@@ -6,16 +6,18 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { siteConfig } from "@/lib/site-config";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = usePathname();
 
   const links = [
-    { href: "#services", label: "Services" },
-    { href: "#testimonials", label: "Reviews" },
-    { href: "#booking", label: "Book Now" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#portfolio", label: "Our Fleet" },
+    { href: "/#pricing", label: "Pricing" },
+    { href: "/about", label: "About Us" },
+    { href: "/contact", label: "Contact Us" },
   ];
 
   return (
@@ -43,7 +45,13 @@ export function Navbar() {
           {/* Logo */}
           <div className="md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <span className="font-display font-bold text-xl">TexiBooking</span>
+              <Image
+                src={siteConfig.logoUrl}
+                alt={siteConfig.name}
+                width={140}
+                height={38}
+                className="h-10 w-auto md:h-14"
+              />
             </Link>
           </div>
 

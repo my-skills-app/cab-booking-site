@@ -1,24 +1,24 @@
 export const aboutPageData = {
   hero: {
-    title: "About Us",
-    subtitle: "From idea to launch, we design and develop tailor-made websites & apps that scale with your business.",
+    title: "About ZoyaCab",
+    subtitle: "Connecting people and places with safety, comfort, and reliability since our inception.",
   },
   marquee: {
-    text: "Innovation in Code • Perfection in Craft",
+    text: "Safe Rides • Professional Drivers • Transparent Pricing",
   },
   digitalFuture: {
-    title: "Building the Digital Future",
+    title: "Revolutionizing Local Travel",
     paragraphs: [
-      "At App Nexus, we believe technology isn't just about code - it's about creating possibilities, building trust, and driving growth. Founded with a vision to empower startups, entrepreneurs, and businesses with powerful digital solutions, we have evolved into one of India's fast-growing website and application development agencies, delivering high-performing digital products that inspire results.",
-      "From a small team of passionate developers to a full-fledged agency working with clients across India, Dubai, Canada, and the US, our journey has always been driven by one mission - to make technology simple, scalable, and impactful.",
+      "At ZoyaCab, we believe that every journey should be more than just travel - it should be an experience of comfort and trust. Founded with the vision to provide premium cab services in Bihar and Uttar Pradesh, we have grown into a leading travel partner for thousands of travelers.",
+      "Starting from Siwan, we have expanded our services to Patna, Gorakhpur, Lucknow, and beyond. Our mission is to make intercity and local travel affordable, safe, and easily accessible for everyone.",
     ],
   },
   whoWeAre: {
     title: "Who We Are",
     paragraphs: [
-      "We are a team of creative developers, designers, and strategists who blend innovation with execution.",
-      "Our strength lies in understanding every client's vision deeply and turning it into a digital reality - whether it's an e-commerce app, food delivery system, SaaS platform, or a complete business ecosystem.",
-      "We specialize in both pre-built solutions (for fast and affordable launches) and custom development (for unique, tailor-made platforms). At App Nexus, every line of code, every design, and every project is created with a clear purpose to help your business grow online.",
+      "We are a team of dedicated travel professionals, expert drivers, and customer service enthusiasts committed to your safety.",
+      "Our fleet consists of well-maintained vehicles ranging from economic hatchbacks to luxury SUVs, ensuring we have the right ride for every occasion - be it a wedding, a business trip, or a family vacation.",
+      "We specialize in One-Way drops, Round-Trips, and Airport Transfers, providing a seamless booking experience through our modern digital platform.",
     ],
   },
 };

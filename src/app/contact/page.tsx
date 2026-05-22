@@ -1,0 +1,157 @@
+'use client';
+
+import {
+  Mail,
+  MapPin,
+  Phone,
+  User,
+  Book,
+  MessageSquare,
+} from 'lucide-react';
+import { Navbar } from '@/components/Navbar';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { contactPageData } from '@/lib/contact-page-data';
+import { siteConfig } from '@/lib/site-config';
+import { BookingForm } from '@/components/BookingForm';
+
+const ContactPage = () => {
+  const { header, info, form } = contactPageData;
+  
+  return (
+    <div className="min-h-screen bg-background font-sans">
+      <Navbar />
+      <main className="pt-48 pb-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            {/* Left Side: Booking Info (As requested in image) */}
+            <div className="space-y-12">
+              <div className="text-center md:text-left">
+                <span className="text-sm font-bold text-primary uppercase tracking-widest">
+                  Quick Booking
+                </span>
+                <h1 className="text-4xl md:text-6xl font-black mt-2 leading-tight">
+                  Book Your Ride <br /> <span className="text-blue-600">Instantly</span>
+                </h1>
+              </div>
+
+              <div className="space-y-10">
+                <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+                  <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shadow-lg">
+                    <span className="text-3xl">🚗</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold uppercase tracking-wide">Oneway Trips</h3>
+                    <p className="text-muted-foreground mt-2 leading-relaxed">
+                      Simplify your travel with affordable and convenient one-way rides. Perfect for single-destination journeys without the hassle of return fares.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
+                  <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center shadow-lg">
+                    <span className="text-3xl">💰</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold uppercase tracking-wide">Roundtrip Cabs</h3>
+                    <p className="text-muted-foreground mt-2 leading-relaxed">
+                      Enjoy seamless and comfortable travel with our roundtrip cab services. Ideal for exploring your destination with the convenience of a scheduled return.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side: Booking Form */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-blue-600/5 blur-3xl rounded-[40px] -z-10" />
+              <BookingForm />
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className="bg-background border-t border-border py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="md:col-span-1">
+              <h3 className="font-medium text-foreground mb-2">
+                Contact us at
+              </h3>
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {siteConfig.contactEmail}
+              </a>
+              <form className="mt-4 flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="max-w-xs"
+                />
+                <Button type="submit">Subscribe</Button>
+              </form>
+            </div>
+            <div className="md:col-start-3">
+              <h3 className="font-semibold text-foreground mb-4">Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/prebuilt"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Prebuilt
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/customized"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Customized
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <span className="font-display font-bold text-2xl">{siteConfig.name}</span>
+              <p className="text-muted-foreground text-sm mt-2">
+                © 2026 {siteConfig.name}. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default ContactPage;

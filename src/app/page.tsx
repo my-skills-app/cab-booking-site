@@ -4,7 +4,7 @@ import * as React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Users, Briefcase, Wind } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 
 
 export default function Home() {
-  const { streamlineBusiness, videoShowcase, socialPresence, team, faq } = landingPageData;
+  const { streamlineBusiness, videoShowcase, socialPresence, portfolio, team, faq } = landingPageData;
 
   const [emblaApi, setEmblaApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
@@ -54,51 +54,8 @@ export default function Home() {
       <main>
         <Hero />
         
-        {/* Streamline Business Section */}
-        <section id="services" className="py-24 bg-secondary/30 relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-card border border-border text-[13px] font-medium text-muted-foreground mb-6 shadow-sm">
-                Services
-              </span>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground max-w-2xl mx-auto leading-tight">
-                Our Premium Cab Booking Services
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {streamlineBusiness.features.map((feature, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-card rounded-[32px] p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 group"
-                >
-                  <div className="aspect-[1.4/1] rounded-2xl overflow-hidden mb-8 bg-background border flex items-center justify-center p-4">
-                    <Image 
-                      src={feature.image} 
-                      alt={feature.alt}
-                      width={800}
-                      height={571}
-                      className="w-full h-full object-cover rounded-xl shadow-lg transform group-hover:scale-[1.02] transition-transform duration-500"
-                      data-ai-hint={feature.hint}
-                    />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-3 px-2">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed px-2">
-                    {feature.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Video Showcase Section */}
-        <section className="relative py-32 overflow-hidden">
+        {/* Video Showcase Section (Moved here) */}
+        <section className="relative py-24 sm:py-32 overflow-hidden">
           {/* Noise/Grain Background with Animated Glow */}
           <div className="absolute inset-0 bg-foreground z-0">
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')` }} />
@@ -119,46 +76,103 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-background mb-4">
-                Experience the Comfort
+                Reliable & Safe Travel
               </h2>
               <p className="text-3xl md:text-4xl font-display font-bold text-background/90">
-                Ride with Confidence
+                With ZoyaCab
               </p>
             </div>
 
             <div className="max-w-5xl mx-auto">
-              <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 backdrop-blur-sm">
+              <div className="relative aspect-video rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 backdrop-blur-sm">
                 <iframe
                   src={videoShowcase.youtubeVideoUrl}
                   title={videoShowcase.title}
                   className="absolute inset-0 w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                ></iframe>
+                />
               </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Streamline Business Section (Now Pricing) */}
+        <section id="pricing" className="py-24 bg-secondary/30 relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-card border border-border text-[13px] font-medium text-muted-foreground mb-6 shadow-sm">
+                Our Services
+              </span>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground max-w-2xl mx-auto leading-tight">
+                Flexible Cab Booking Options for Every Need
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {streamlineBusiness.features.map((feature, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-card rounded-2xl sm:rounded-[32px] p-5 sm:p-8 border border-border shadow-sm hover:shadow-lg transition-all duration-500 group"
+                >
+                  <div className="aspect-[1.6/1] sm:aspect-[1.4/1] rounded-xl sm:rounded-2xl overflow-hidden mb-4 sm:mb-8 bg-background border flex items-center justify-center p-2 sm:p-4 relative">
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20">
+                      <span className="bg-red-600 text-white text-[9px] sm:text-[10px] font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wider shadow-lg">{(feature as any).dealText}</span>
+                    </div>
+                    <Image 
+                      src={feature.image} 
+                      alt={feature.alt}
+                      width={800}
+                      height={571}
+                      className="w-full h-full object-cover rounded-lg sm:rounded-xl shadow-lg transform group-hover:scale-[1.02] transition-transform duration-500"
+                      data-ai-hint={feature.hint}
+                    />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-3 px-1 sm:px-2">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed px-1 sm:px-2 mb-3 sm:mb-4">
+                    {feature.description}
+                  </p>
+                  <div className="px-1 sm:px-2 mb-4 sm:mb-6 flex flex-col gap-0.5 sm:gap-1">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <span className="text-xl sm:text-2xl font-black text-primary">{(feature as any).price}</span>
+                      <span className="bg-red-100 text-red-600 text-[10px] sm:text-[11px] font-bold px-1.5 sm:px-2 py-0.5 rounded-md">SAVE {(feature as any).discount}</span>
+                    </div>
+                    <span className="text-xs sm:text-sm text-muted-foreground line-through opacity-50 ml-0.5 sm:ml-1">M.R.P: {(feature as any).originalPrice}</span>
+                  </div>
+                  <div className="mt-4 sm:mt-8 flex flex-col sm:flex-row gap-2 sm:gap-3 px-1 sm:px-2">
+                    <Button className="flex-1 h-11 sm:h-14 rounded-lg sm:rounded-xl bg-primary hover:bg-primary/90 transition-all shadow-md text-base sm:text-lg font-semibold">Book Now</Button>
+                    <Button variant="outline" className="flex-1 h-11 sm:h-14 rounded-lg sm:rounded-xl border-primary text-primary hover:bg-primary/5 transition-all text-base sm:text-lg font-semibold">Rent Car</Button>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Social Presence Section */}
-        <section id="testimonials" className="py-24 bg-card relative overflow-hidden">
+        <section className="py-24 bg-card relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-1.5 rounded-full bg-background border border-border text-[13px] font-medium text-muted-foreground mb-6 shadow-sm">
-                Social Presence
+                Social Proof
               </span>
               <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-12">
-                Trusted by 130k+ Travelers
+                Trusted by 50,000+ Travelers
               </h2>
             </div>
 
-            <div className="relative max-w-5xl mx-auto">
-              <Carousel setApi={setEmblaApi} opts={{ loop: true }} className="w-full max-w-xs mx-auto md:max-w-sm">
+            <div className="relative max-w-7xl mx-auto">
+              <Carousel setApi={setEmblaApi} opts={{ loop: true, align: "start" }} className="w-full">
                 <CarouselContent>
                   {socialPresence.videos.map((video, index) => (
-                    <CarouselItem key={index}>
-                      <div className="p-1">
-                        <div className="w-full md:w-80 aspect-[9/16] rounded-[40px] overflow-hidden bg-muted shadow-2xl relative group border-4 border-card ring-1 ring-black/5 mx-auto">
+                    <CarouselItem key={index} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                      <div className="p-2">
+                        <div className="w-full aspect-[9/16] rounded-[32px] sm:rounded-[40px] overflow-hidden bg-muted shadow-2xl relative group border-4 border-card ring-1 ring-black/5">
                           <iframe
                             src={video.src}
                             title={video.title}
@@ -191,15 +205,92 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Our Cars Section */}
+        <section id="portfolio" className="py-24 bg-secondary/30 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center mb-16">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-card border border-border text-[13px] font-medium text-muted-foreground mb-6 shadow-sm">
+                Our Cars
+              </span>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-12">
+                Our Premium Fleet
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {portfolio.projects.map((project, idx) => (
+                <motion.div
+                  key={project.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-border shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col"
+                >
+                  <div className="aspect-[1.6/1] sm:aspect-[1.4/1] rounded-xl sm:rounded-2xl overflow-hidden mb-6 bg-muted border relative">
+                    <div className="absolute top-3 right-3 z-10">
+                      <span className="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-lg uppercase tracking-wider">{(project as any).discount}</span>
+                    </div>
+                    <Image
+                      src={project.image} 
+                      alt={project.title}
+                      width={600}
+                      height={429}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      data-ai-hint={project.hint}
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+
+                  {/* Car Specs */}
+                  <div className="flex items-center gap-4 mb-6 border-y border-border py-3">
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                      <Users size={14} className="text-primary" />
+                      {(project as any).specs.passengers} Seats
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                      <Briefcase size={14} className="text-primary" />
+                      {(project as any).specs.luggage} Bags
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                      <Wind size={14} className="text-primary" />
+                      AC
+                    </div>
+                  </div>
+
+                  <div className="mb-6 flex items-center gap-3">
+                    <span className="text-2xl font-black text-primary">{(project as any).price}</span>
+                    <span className="text-base text-muted-foreground line-through opacity-50">{(project as any).originalPrice}</span>
+                  </div>
+                  
+                  <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                    <Button className="flex-1 h-12 rounded-xl bg-foreground text-background hover:bg-foreground/90 font-bold shadow-lg transition-all">Book Car</Button>
+                    <Button variant="outline" className="flex-1 h-12 rounded-xl border-primary text-primary hover:bg-primary/5 font-bold transition-all">Rent Car</Button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-16 text-center">
+              <button className="px-8 py-3 rounded-full border border-foreground text-foreground font-semibold hover:bg-foreground hover:text-background transition-all duration-300">
+                View All
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* Team Section */}
         <section className="py-24 bg-card relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-1.5 rounded-full bg-background border border-border text-[13px] font-medium text-muted-foreground mb-6 shadow-sm">
-                Our Team
+                Our Expert Drivers
               </span>
               <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-12">
-                Team Behind the Wheels
+                The Hands Behind the Wheel
               </h2>
             </div>
 
@@ -269,7 +360,7 @@ export default function Home() {
 
       </main>
       
-      <footer id="contact" className="bg-background border-t border-border py-12">
+      <footer className="bg-background border-t border-border py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-1">
@@ -286,9 +377,10 @@ export default function Home() {
               <h3 className="font-semibold text-foreground mb-4">Links</h3>
               <ul className="space-y-2">
                 <li><Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link></li>
-                <li><Link href="#services" className="text-muted-foreground hover:text-foreground transition-colors">Services</Link></li>
-                <li><Link href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">Testimonials</Link></li>
-                <li><Link href="#booking" className="text-muted-foreground hover:text-foreground transition-colors">Book Now</Link></li>
+                <li><Link href="/prebuilt" className="text-muted-foreground hover:text-foreground transition-colors">Prebuilt</Link></li>
+                <li><Link href="/customized" className="text-muted-foreground hover:text-foreground transition-colors">Customized</Link></li>
+                <li><Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">About Us</Link></li>
+                <li><Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link></li>
               </ul>
             </div>
           </div>

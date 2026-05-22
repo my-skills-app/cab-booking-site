@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
-  description: "TexiBooking - Reliable and comfortable taxi booking services.",
+  description: "ZoyaCab - Premium and reliable cab services in Bihar and UP. One-way drops, round trips, and airport transfers at affordable rates.",
   icons: [
     {
       url: siteConfig.logoUrl,
@@ -28,6 +28,8 @@ export const metadata: Metadata = {
     },
   ],
 };
+
+import { FloatingAction } from "@/components/FloatingAction";
 
 export default function RootLayout({
   children,
@@ -38,6 +40,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className="font-sans antialiased">
         {children}
+        <FloatingAction />
         <Toaster />
       </body>
     </html>
