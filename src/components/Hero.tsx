@@ -1,20 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Star, MessageCircle, ShieldCheck } from "lucide-react";
+import { Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { landingPageData } from "@/lib/landing-page-data";
 import { siteConfig } from "@/lib/site-config";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { BookingForm } from "@/components/BookingForm";
-
 export function Hero() {
   const { hero } = landingPageData;
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="relative pt-24 pb-16 lg:pt-36 lg:pb-28 overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-grid-pattern z-0 pointer-events-none" />
 
@@ -29,8 +26,8 @@ export function Hero() {
             className="flex-1 text-center"
           >
 
-            <div className="mb-8 sm:mb-10 max-w-lg mx-auto relative px-2">
-              <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+            <div className="mb-6 sm:mb-8 max-w-lg mx-auto relative px-2">
+              <div className="rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border-2 border-white">
                 <Image
                   src={hero.mainImage.src}
                   alt={hero.mainImage.alt}
@@ -50,7 +47,7 @@ export function Hero() {
 
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center mb-8 sm:mb-10 px-4">
               <Link
-                href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello ZoyaCab, I want to book a trip.`}
+                href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello IndiaCab, I want to book a trip.`}
                 target="_blank"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-lg hover:bg-[#20bd5a] transition-all duration-300 shadow-xl shadow-green-500/20 flex items-center justify-center gap-3 active:scale-95"
               >
@@ -60,16 +57,12 @@ export function Hero() {
                 Book on WhatsApp
               </Link>
 
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="w-full sm:w-auto px-6 py-4 sm:px-8 sm:py-5 rounded-xl bg-blue-600 text-white font-bold text-lg sm:text-xl hover:bg-blue-700 hover:scale-105 transition-all duration-200 shadow-xl flex items-center justify-center gap-2 active:scale-95">
-                    Request a Call Back
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-w-3xl p-0 overflow-hidden bg-transparent border-none">
-                  <BookingForm />
-                </DialogContent>
-              </Dialog>
+              <a
+                href={`tel:${siteConfig.phoneNumber}`}
+                className="w-full sm:w-auto px-6 py-4 sm:px-8 sm:py-5 rounded-xl bg-blue-600 text-white font-bold text-lg sm:text-xl hover:bg-blue-700 hover:scale-105 transition-all duration-200 shadow-xl flex items-center justify-center gap-2 active:scale-95"
+              >
+                Request a Call Back
+              </a>
             </div>
 
             {/* Popular Routes Highlights (App-like Mobile Version) */}
@@ -83,7 +76,7 @@ export function Hero() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
                 <Link
-                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello ZoyaCab, I want to book a trip from Siwan To Patna at ₹ 2599.`}
+                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello IndiaCab, I want to book a trip from Siwan To Patna at ₹ 2599.`}
                   target="_blank"
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
@@ -98,7 +91,7 @@ export function Hero() {
                 </Link>
 
                 <Link
-                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello ZoyaCab, I want to book a trip from Siwan To Lucknow at ₹ 7999.`}
+                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello IndiaCab, I want to book a trip from Siwan To Lucknow at ₹ 7999.`}
                   target="_blank"
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
@@ -113,32 +106,32 @@ export function Hero() {
                 </Link>
 
                 <Link
-                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello ZoyaCab, I want to book a trip from Siwan To Gorakhpur at ₹ 1999.`}
+                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello IndiaCab, I want to book a trip from Patna to Muzaffarpur at ₹ 1799.`}
                   target="_blank"
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
                   <div className="flex flex-col items-start">
                     <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Route</span>
-                    <span className="font-bold text-foreground text-sm sm:text-lg">Siwan To Gorakhpur</span>
+                    <span className="font-bold text-foreground text-sm sm:text-lg">Patna to Muzaffarpur</span>
                   </div>
                   <div className="flex flex-col items-end">
                     <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest text-right">Fixed</span>
-                    <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 1999</span>
+                    <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 1799</span>
                   </div>
                 </Link>
 
                 <Link
-                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello ZoyaCab, I want to book a trip from Siwan To Patna Airport at ₹ 2899.`}
+                  href={`https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=Hello IndiaCab, I want to book a trip from Siwan To Patna To Motihari at ₹ 3199.`}
                   target="_blank"
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
                   <div className="flex flex-col items-start">
                     <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Route</span>
-                    <span className="font-bold text-foreground text-sm sm:text-lg">Patna Airport</span>
+                    <span className="font-bold text-foreground text-sm sm:text-lg">Patna To Motihari</span>
                   </div>
                   <div className="flex flex-col items-end">
                     <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest text-right">Fixed</span>
-                    <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 2899</span>
+                    <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 3199</span>
                   </div>
                 </Link>
               </div>

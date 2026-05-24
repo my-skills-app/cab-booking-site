@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
-  description: "ZoyaCab - Premium and reliable cab services in Bihar and UP. One-way drops, round trips, and airport transfers at affordable rates.",
+  description: "IndiaCab - Premium and reliable cab services in Bihar and UP. One-way drops, round trips, and airport transfers at affordable rates.",
   icons: [
     {
       url: siteConfig.logoUrl,

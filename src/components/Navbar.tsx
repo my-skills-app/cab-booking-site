@@ -21,11 +21,11 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-8 left-0 right-0 z-50 px-4">
-      <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md border border-black/5 rounded-full px-4 shadow-lg">
-        <div className="relative flex items-center justify-between h-16 md:h-20">
+    <nav className="fixed top-4 left-0 right-0 z-50 px-4">
+      <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md border border-black/5 rounded-full px-3 shadow-lg">
+        <div className="relative flex items-center justify-between h-14 md:h-16">
           {/* Left Nav */}
-          <div className="hidden md:flex items-center gap-10 pl-6">
+          <div className="hidden md:flex items-center gap-6 pl-3">
             {links.slice(0, 2).map((link) => (
               <Link
                 key={link.href}
@@ -50,13 +50,13 @@ export function Navbar() {
                 alt={siteConfig.name}
                 width={140}
                 height={38}
-                className="h-10 w-auto md:h-14"
+                className="h-9 w-auto md:h-12"
               />
             </Link>
           </div>
 
           {/* Right Nav */}
-          <div className="hidden md:flex items-center gap-10 pr-6">
+          <div className="hidden md:flex items-center gap-6 pr-3">
             {links.slice(2).map((link) => (
               <Link
                 key={link.href}

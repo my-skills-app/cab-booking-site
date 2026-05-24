@@ -1,8 +1,8 @@
 export const landingPageData = {
   hero: {
     mainImage: {
-      src: "https://i.ibb.co/f7MHd4J/Add-a-heading-1.png",
-      alt: "ZoyaCab Founders"
+      src: "https://i.ibb.co/wh7SdL8R/logo122.png",
+      alt: "IndiaCab Founders"
     },
     paragraph: "Experience the most reliable and comfortable cab service in Bihar and UP. Whether it's a one-way trip, a round journey",
     socialProof: {
@@ -19,13 +19,13 @@ export const landingPageData = {
   streamlineBusiness: {
     features: [
       {
-        image: "https://i.ibb.co/20j2MCRR/Untitled-design-2.jpg",
+        image: "https://i.ibb.co/9339DTmJ/disrepic-app.jpg",
         alt: "One Way Trip Service",
         hint: "cab booking one way",
-        title: "One Way Drops (Intercity)",
-        description: "Save big on one-way trips. No return fare required. Perfect for travel from Siwan to Patna or Gorakhpur.",
-        price: "₹10/km",
-        originalPrice: "₹15/km",
+        title: "Patna To Sitamarhi",
+        description: "वन-वे ट्रिप पर बड़ी बचत करें। रिटर्न किराया देने की जरूरत नहीं। Patna से Sitamarhi की यात्रा के लिए बिल्कुल परफेक्ट।",
+        price: "₹2599",
+        originalPrice: "₹3000",
         discount: "33% OFF",
         dealText: "Most Booked"
       },
@@ -33,22 +33,22 @@ export const landingPageData = {
         image: "/images/services/roundtrip.png",
         alt: "Round Trip Service",
         hint: "round trip cab",
-        title: "Outstation Round Trips",
-        description: "Enjoy a relaxed journey with our family-friendly drivers. Best for weekend getaways from Siwan.",
-        price: "₹13/km",
-        originalPrice: "₹18/km",
+        title: "Siwan To Dehli",
+        description: "मात्र ₹13,999 में Siwan से Delhi जाने का सुनहरा मौका — अब वंदे भारत के साथ आरामदायक और शानदार सफर का आनंद लें।",
+        price: "₹13999",
+        originalPrice: "₹16000",
         discount: "28% OFF",
         dealText: "Family Choice"
       },
       {
-        image: "https://i.ibb.co/CsVH5y3H/Untitled-design-1.jpg",
+        image: "https://i.ibb.co/Swq8sxf2/audi-offer.png",
         alt: "Airport Transfer Service",
         hint: "airport taxi service",
-        title: "Patna Airport (Fixed Rate)",
-        description: "Punctual drops to Patna Airport. We ensure you reach well before your flight check-in time.",
-        price: "₹2499",
-        originalPrice: "₹3499",
-        discount: "₹1000 OFF",
+        title: "Siwan To Gorakhpur",
+        description: "Siwan से Gorakhpur तक समय पर और आरामदायक सफर। हम सुनिश्चित करते हैं कि आप अपनी मंज़िल पर बिना किसी देरी के सुरक्षित पहुँचें।",
+        price: "₹2999",
+        originalPrice: "₹3500",
+        discount: "₹501 OFF",
         dealText: "Bestseller"
       },
       {
@@ -89,7 +89,7 @@ export const landingPageData = {
 
   videoShowcase: {
     youtubeVideoUrl: "https://www.youtube.com/embed/SjRhP-1pElI", // Placeholder, user mentioned keeping it or updating
-    title: "Why Choose ZoyaCab?"
+    title: "Why Choose IndiaCab?"
   },
   socialPresence: {
     videos: [
@@ -125,7 +125,7 @@ export const landingPageData = {
         image: "/images/fleet/sedan.png",
         hint: "Maruti Suzuki Dzire",
         price: "₹11/km",
-        originalPrice: "₹13/km",
+        originalPrice: "₹13999",
         discount: "15% OFF",
         specs: { passengers: "4", luggage: "3", ac: true }
       },
@@ -134,8 +134,8 @@ export const landingPageData = {
         description: "Large and powerful, best for family outings and group travel.",
         image: "/images/fleet/suv.png",
         hint: "Maruti Suzuki Ertiga/Innova",
-        price: "₹15/km",
-        originalPrice: "₹18/km",
+        price: "₹3000",
+        originalPrice: "₹16000",
         discount: "16% OFF",
         specs: { passengers: "6-7", luggage: "4", ac: true }
       }
@@ -143,7 +143,7 @@ export const landingPageData = {
   },
   team: {
     members: [
-      { name: "Suresh Kumar", role: "Elite Driver (10+ yrs exp)", imageId: "team-1" },
+      { name: "Sanjeev Sahani", role: "Elite Driver (10+ yrs exp)", imageId: "team-1" },
       { name: "Rahul Singh", role: "City Expert (8+ yrs exp)", imageId: "team-2" },
       { name: "Amit Yadav", role: "Long Route Specialist", imageId: "team-3" },
       { name: "Mohit Verma", role: "Airport Specialist", imageId: "team-4" }
@@ -152,12 +152,12 @@ export const landingPageData = {
   faq: {
     items: [
       {
-        question: "How do I book a ZoyaCab?",
+        question: "How do I book a IndiaCab?",
         answer: "You can book directly via our website form or call us on our 24/7 helpline number. We provide instant confirmation."
       },
       {
         question: "What are the per-km charges?",
-        answer: "Charges vary by car type: Hatchback (₹9/km), Sedan (₹11/km), and SUV (₹15/km). We also have fixed route pricing for major cities."
+        answer: "Charges vary by car type: Hatchback (₹9/km), Sedan (₹11/km), and SUV (₹3000). We also have fixed route pricing for major cities."
       },
       {
         question: "Do you provide airport pick-up services?",
