@@ -100,6 +100,59 @@ export default function Home() {
           </div>
         </section>
         
+        {/* Booking Form Section */}
+        <section id="book-ride" className="py-16 sm:py-24 bg-card relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+              <div className="space-y-8 text-center lg:text-left">
+                <div>
+                  <span className="text-sm font-bold text-primary uppercase tracking-widest">
+                    Quick Booking
+                  </span>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mt-2 leading-tight">
+                    Book Your Ride <span className="text-blue-600">Instantly</span>
+                  </h2>
+                  <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
+                    Fill in your trip details and our team will call you back within minutes to confirm your cab.
+                  </p>
+                </div>
+
+                <div className="space-y-6 sm:space-y-8">
+                  <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start text-center lg:text-left gap-4">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-100 flex items-center justify-center shadow-lg shrink-0">
+                      <span className="text-2xl sm:text-3xl">🚗</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Oneway Trips</h3>
+                      <p className="text-muted-foreground mt-2 text-sm sm:text-base leading-relaxed">
+                        Affordable one-way rides without return fare hassle.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start text-center lg:text-left gap-4">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-yellow-100 flex items-center justify-center shadow-lg shrink-0">
+                      <span className="text-2xl sm:text-3xl">💰</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Roundtrip Cabs</h3>
+                      <p className="text-muted-foreground mt-2 text-sm sm:text-base leading-relaxed">
+                        Comfortable round trips with scheduled return pickup.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative w-full">
+                <div className="absolute -inset-2 sm:-inset-4 bg-blue-600/5 blur-3xl rounded-[40px] -z-10" />
+                <BookingForm />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Streamline Business Section (Now Pricing) */}
         <section id="pricing" className="py-24 bg-secondary/30 relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
@@ -209,59 +262,6 @@ export default function Home() {
           </div>
         </section>
         )}
-
-        {/* Booking Form Section */}
-        <section id="book-ride" className="py-16 sm:py-24 bg-card relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" />
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-              <div className="space-y-8 text-center lg:text-left">
-                <div>
-                  <span className="text-sm font-bold text-primary uppercase tracking-widest">
-                    Quick Booking
-                  </span>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black mt-2 leading-tight">
-                    Book Your Ride <span className="text-blue-600">Instantly</span>
-                  </h2>
-                  <p className="mt-4 text-muted-foreground text-base sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0">
-                    Fill in your trip details and our team will call you back within minutes to confirm your cab.
-                  </p>
-                </div>
-
-                <div className="space-y-6 sm:space-y-8">
-                  <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start text-center lg:text-left gap-4">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-100 flex items-center justify-center shadow-lg shrink-0">
-                      <span className="text-2xl sm:text-3xl">🚗</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Oneway Trips</h3>
-                      <p className="text-muted-foreground mt-2 text-sm sm:text-base leading-relaxed">
-                        Affordable one-way rides without return fare hassle.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start text-center lg:text-left gap-4">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-yellow-100 flex items-center justify-center shadow-lg shrink-0">
-                      <span className="text-2xl sm:text-3xl">💰</span>
-                    </div>
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Roundtrip Cabs</h3>
-                      <p className="text-muted-foreground mt-2 text-sm sm:text-base leading-relaxed">
-                        Comfortable round trips with scheduled return pickup.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative w-full">
-                <div className="absolute -inset-2 sm:-inset-4 bg-blue-600/5 blur-3xl rounded-[40px] -z-10" />
-                <BookingForm />
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Our Cars Section */}
         <section id="portfolio" className="py-24 bg-secondary/30 relative overflow-hidden">
