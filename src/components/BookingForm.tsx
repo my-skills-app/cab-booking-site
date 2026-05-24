@@ -25,7 +25,7 @@ export function BookingForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-10 border border-border max-w-2xl mx-auto overflow-y-auto max-h-[90vh] sm:max-h-none">
+    <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-10 border border-border max-w-2xl mx-auto">
       <div className="text-center mb-8">
         <h2 className="text-2xl sm:text-3xl font-display font-black text-foreground uppercase tracking-tight">Request a Call Back</h2>
         <div className="h-1 w-20 bg-primary mx-auto mt-2 rounded-full" />
