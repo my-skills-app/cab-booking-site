@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
+import { FloatingAction } from "@/components/FloatingAction";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
-
+import "@fontsource/outfit/latin-400.css";
+import "@fontsource/outfit/latin-500.css";
+import "@fontsource/outfit/latin-600.css";
+import "@fontsource/outfit/latin-700.css";
+import "@fontsource/outfit/latin-800.css";
+import "@fontsource/outfit/latin-900.css";
 
 export const metadata: Metadata = {
   title: {
@@ -29,15 +25,13 @@ export const metadata: Metadata = {
   ],
 };
 
-import { FloatingAction } from "@/components/FloatingAction";
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en">
       <body className="font-sans antialiased">
         {children}
         <FloatingAction />

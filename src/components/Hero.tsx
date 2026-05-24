@@ -71,7 +71,7 @@ export function Hero() {
 
               <div className="flex items-center justify-between mb-6 px-1">
                 <h3 className="text-lg sm:text-2xl font-display font-black text-foreground uppercase tracking-tight">Popular Fares</h3>
-                <span className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-bold rounded-full uppercase tracking-widest border border-blue-100">Live Prices</span>
+                <span className="px-2 py-0.5 bg-blue-50 text-blue-600 text-[9px] font-extrabold rounded-full uppercase tracking-widest border border-blue-100">Live Prices</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
@@ -81,11 +81,11 @@ export function Hero() {
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
                   <div className="flex flex-col items-start">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Route</span>
-                    <span className="font-bold text-foreground text-sm sm:text-lg">Siwan To Patna</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest">Route</span>
+                    <span className="font-black text-foreground text-sm sm:text-lg">Siwan To Patna</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest text-right">Fixed</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest text-right">Fixed</span>
                     <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 2599</span>
                   </div>
                 </Link>
@@ -96,11 +96,11 @@ export function Hero() {
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
                   <div className="flex flex-col items-start">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Route</span>
-                    <span className="font-bold text-foreground text-sm sm:text-lg">Siwan To Lucknow</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest">Route</span>
+                    <span className="font-black text-foreground text-sm sm:text-lg">Siwan To Lucknow</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest text-right">Fixed</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest text-right">Fixed</span>
                     <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 7999</span>
                   </div>
                 </Link>
@@ -111,11 +111,11 @@ export function Hero() {
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
                   <div className="flex flex-col items-start">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Route</span>
-                    <span className="font-bold text-foreground text-sm sm:text-lg">Patna to Muzaffarpur</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest">Route</span>
+                    <span className="font-black text-foreground text-sm sm:text-lg">Patna to Muzaffarpur</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest text-right">Fixed</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest text-right">Fixed</span>
                     <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 1799</span>
                   </div>
                 </Link>
@@ -126,11 +126,11 @@ export function Hero() {
                   className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                 >
                   <div className="flex flex-col items-start">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest">Route</span>
-                    <span className="font-bold text-foreground text-sm sm:text-lg">Patna To Motihari</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest">Route</span>
+                    <span className="font-black text-foreground text-sm sm:text-lg">Patna To Motihari</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[8px] sm:text-[10px] text-muted-foreground uppercase font-bold tracking-widest text-right">Fixed</span>
+                    <span className="text-[8px] sm:text-[10px] text-foreground/70 uppercase font-extrabold tracking-widest text-right">Fixed</span>
                     <span className="text-lg sm:text-2xl font-black text-blue-600">₹ 3199</span>
                   </div>
                 </Link>

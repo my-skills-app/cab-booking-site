@@ -7,6 +7,8 @@ import {
   User,
   Book,
   MessageSquare,
+  Car,
+  Coins,
 } from 'lucide-react';
 import { Navbar } from '@/components/Navbar';
 import Link from 'next/link';
@@ -40,7 +42,7 @@ const ContactPage = () => {
               <div className="space-y-10">
                 <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
                   <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center shadow-lg">
-                    <span className="text-3xl">🚗</span>
+                    <Car className="w-8 h-8 text-red-500" strokeWidth={2.5} />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold uppercase tracking-wide">Oneway Trips</h3>
@@ -52,7 +54,7 @@ const ContactPage = () => {
 
                 <div className="flex flex-col items-center md:items-start text-center md:text-left gap-4">
                   <div className="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center shadow-lg">
-                    <span className="text-3xl">💰</span>
+                    <Coins className="w-8 h-8 text-yellow-600" strokeWidth={2.5} />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold uppercase tracking-wide">Roundtrip Cabs</h3>

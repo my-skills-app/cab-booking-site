@@ -14,7 +14,6 @@ export function Navbar() {
   const location = usePathname();
 
   const links = [
-    { href: "/#portfolio", label: "Our Fleet" },
     { href: "/#pricing", label: "Pricing" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },

@@ -27,7 +27,7 @@ export const landingPageData = {
         price: "₹2599",
         originalPrice: "₹3000",
         discount: "33% OFF",
-        dealText: "Most Booked"
+        dealText: "Family Choice"
       },
       {
         image: "/images/services/roundtrip.png",
@@ -49,7 +49,7 @@ export const landingPageData = {
         price: "₹2999",
         originalPrice: "₹3500",
         discount: "₹501 OFF",
-        dealText: "Bestseller"
+        dealText: "City Travel"
       },
       {
         image: "https://i.ibb.co/csTKXrP/nissan-offer-1.png",
@@ -61,29 +61,8 @@ export const landingPageData = {
         originalPrice: "₹3000",
         discount: "25% OFF",
         dealText: "City Travel"
-      },
-      {
-        image: "/images/services/marriage.png",
-        alt: "Marriage Booking Service",
-        hint: "wedding car rental",
-        title: "Wedding & Event Cars",
-        description: "Make your entry special with our decorated luxury cars. We handle group bookings for guests too.",
-        price: "₹4500",
-        originalPrice: "₹6000",
-        discount: "₹1500 OFF",
-        dealText: "Luxury"
-      },
-      {
-        image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80",
-        alt: "Corporate Booking Service",
-        hint: "corporate car rental",
-        title: "Monthly Staff Pick-up",
-        description: "Hassle-free monthly contracts for businesses. Reliable service for your team in Siwan & beyond.",
-        price: "₹25k/mo",
-        originalPrice: "₹35k/mo",
-        discount: "₹10k OFF",
-        dealText: "Business"
       }
+
     ]
   },
 
@@ -147,6 +126,61 @@ export const landingPageData = {
       { name: "Rahul Singh", role: "City Expert (8+ yrs exp)", imageId: "team-2" },
       { name: "Amit Yadav", role: "Long Route Specialist", imageId: "team-3" },
       { name: "Mohit Verma", role: "Airport Specialist", imageId: "team-4" }
+    ]
+  },
+  customerReviews: {
+    badge: "Customer Reviews",
+    title: "What Our Travelers Say",
+    subtitle: "Real feedback from thousands of happy customers across Bihar and UP.",
+    reviews: [
+      {
+        name: "Ravi Kumar",
+        location: "Patna, Bihar",
+        route: "Siwan To Patna",
+        rating: 5,
+        review: "Bahut accha experience tha! Driver time par aaya aur gaadi bilkul saaf thi. Siwan se Patna ka safar comfortable raha.",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
+      },
+      {
+        name: "Priya Sharma",
+        location: "Siwan, Bihar",
+        route: "Siwan To Delhi",
+        rating: 5,
+        review: "Delhi ke liye IndiaCab se book kiya. Long route par bhi driver bahut professional tha. Highly recommended!",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
+      },
+      {
+        name: "Amit Singh",
+        location: "Gorakhpur, UP",
+        route: "Siwan To Gorakhpur",
+        rating: 5,
+        review: "Airport drop ke liye perfect service. Fixed price thi, koi hidden charge nahi. Will book again.",
+        avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop"
+      },
+      {
+        name: "Neha Verma",
+        location: "Lucknow, UP",
+        route: "Siwan To Lucknow",
+        rating: 4,
+        review: "Family ke saath travel kiya. SUV comfortable thi aur driver bahut helpful tha. Safe journey!",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"
+      },
+      {
+        name: "Suresh Yadav",
+        location: "Muzaffarpur, Bihar",
+        route: "Patna To Muzaffarpur",
+        rating: 5,
+        review: "One-way trip book ki thi. Price bahut reasonable thi aur cab time par mil gayi. Best cab service in Bihar!",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop"
+      },
+      {
+        name: "Anjali Gupta",
+        location: "Darbhanga, Bihar",
+        route: "Patna To Darbhanga",
+        rating: 5,
+        review: "Shaadi ke liye cab book ki thi. Gaadi bahut acchi thi aur driver punctual tha. Sab guests ko pasand aaya!",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop"
+      }
     ]
   },
   faq: {

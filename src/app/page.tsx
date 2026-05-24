@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 
 import * as React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Users, Briefcase, Wind } from "lucide-react";
+import { Car, Coins } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { landingPageData } from "@/lib/landing-page-data";
 import { siteConfig } from "@/lib/site-config";
 import { BookingForm } from "@/components/BookingForm";
+import { CustomerReviews } from "@/components/CustomerReviews";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +25,7 @@ const getWhatsAppUrl = (message: string) =>
   `https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=${encodeURIComponent(message)}`;
 
 export default function Home() {
-  const { streamlineBusiness, videoShowcase, socialPresence, portfolio, team, faq } = landingPageData;
+  const { streamlineBusiness, videoShowcase, socialPresence, team, faq, customerReviews } = landingPageData;
 
   const [emblaApi, setEmblaApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
@@ -124,7 +125,7 @@ export default function Home() {
                 <div className="space-y-6 sm:space-y-8">
                   <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start text-center lg:text-left gap-4">
                     <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-red-100 flex items-center justify-center shadow-lg shrink-0">
-                      <span className="text-2xl sm:text-3xl">🚗</span>
+                      <Car className="w-7 h-7 sm:w-8 sm:h-8 text-red-500" strokeWidth={2.5} />
                     </div>
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Oneway Trips</h3>
@@ -136,7 +137,7 @@ export default function Home() {
 
                   <div className="flex flex-col sm:flex-row lg:flex-col items-center lg:items-start text-center lg:text-left gap-4">
                     <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-yellow-100 flex items-center justify-center shadow-lg shrink-0">
-                      <span className="text-2xl sm:text-3xl">💰</span>
+                      <Coins className="w-7 h-7 sm:w-8 sm:h-8 text-yellow-600" strokeWidth={2.5} />
                     </div>
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Roundtrip Cabs</h3>
@@ -272,88 +273,12 @@ export default function Home() {
         </section>
         )}
 
-        {/* Our Cars Section */}
-        <section id="portfolio" className="py-24 bg-secondary/30 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-card border border-border text-[13px] font-medium text-muted-foreground mb-6 shadow-sm">
-                Our Cars
-              </span>
-              <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-12">
-                Our Premium Fleet
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {portfolio.projects.map((project, idx) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-border shadow-sm hover:shadow-xl transition-all duration-500 group flex flex-col"
-                >
-                  <div className="aspect-[1.6/1] sm:aspect-[1.4/1] rounded-xl sm:rounded-2xl overflow-hidden mb-6 bg-muted border relative">
-                    <div className="absolute top-3 right-3 z-10">
-                      <span className="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-lg uppercase tracking-wider">{(project as any).discount}</span>
-                    </div>
-                    <Image
-                      src={project.image} 
-                      alt={project.title}
-                      width={600}
-                      height={429}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      data-ai-hint={project.hint}
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {project.description}
-                  </p>
-
-                  {/* Car Specs */}
-                  <div className="flex items-center gap-4 mb-6 border-y border-border py-3">
-                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                      <Users size={14} className="text-primary" />
-                      {(project as any).specs.passengers} Seats
-                    </div>
-                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                      <Briefcase size={14} className="text-primary" />
-                      {(project as any).specs.luggage} Bags
-                    </div>
-                    <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                      <Wind size={14} className="text-primary" />
-                      AC
-                    </div>
-                  </div>
-
-                  <div className="mb-6 flex items-center gap-3">
-                    <span className="text-2xl font-black text-primary">{(project as any).price}</span>
-                    <span className="text-base text-muted-foreground line-through opacity-50">{(project as any).originalPrice}</span>
-                  </div>
-                  
-                  <div className="mt-auto">
-                    <Button asChild className="w-full h-12 rounded-xl bg-foreground text-background hover:bg-foreground/90 font-bold shadow-lg transition-all">
-                      <Link
-                        href={getWhatsAppUrl(`Hello IndiaCab, I want to book ${project.title} at ${(project as any).price}.`)}
-                        target="_blank"
-                      >
-                        Book Car
-                      </Link>
-                    </Button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-16 text-center">
-              <button className="px-8 py-3 rounded-full border border-foreground text-foreground font-semibold hover:bg-foreground hover:text-background transition-all duration-300">
-                View All
-              </button>
-            </div>
-          </div>
-        </section>
+        <CustomerReviews
+          badge={customerReviews.badge}
+          title={customerReviews.title}
+          subtitle={customerReviews.subtitle}
+          reviews={customerReviews.reviews}
+        />
 
         {/* Team Section */}
         <section className="py-24 bg-card relative overflow-hidden">
@@ -460,7 +385,7 @@ export default function Home() {
           <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <span className="font-display font-bold text-2xl">{siteConfig.name}</span>
-              <p className="text-muted-foreground text-sm mt-2">© 2026 {siteConfig.name}. All rights reserved.</p>
+              <p className="text-muted-foreground text-sm mt-2">Â© 2026 {siteConfig.name}. All rights reserved.</p>
             </div>
           </div>
         </div>
