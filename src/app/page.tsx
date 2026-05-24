@@ -20,6 +20,9 @@ import { cn } from "@/lib/utils";
 // Set to true to show the "Trusted by 50,000+ Travelers" section again
 const SHOW_SOCIAL_PROOF = false;
 
+const getWhatsAppUrl = (message: string) =>
+  `https://wa.me/${siteConfig.phoneNumber.replace("+", "")}?text=${encodeURIComponent(message)}`;
+
 export default function Home() {
   const { streamlineBusiness, videoShowcase, socialPresence, portfolio, team, faq } = landingPageData;
 
@@ -200,9 +203,15 @@ export default function Home() {
                     </div>
                     <span className="text-xs sm:text-sm text-muted-foreground line-through opacity-50 ml-0.5 sm:ml-1">M.R.P: {(feature as any).originalPrice}</span>
                   </div>
-                  <div className="mt-4 sm:mt-8 flex flex-col sm:flex-row gap-2 sm:gap-3 px-1 sm:px-2">
-                    <Button className="flex-1 h-11 sm:h-14 rounded-lg sm:rounded-xl bg-primary hover:bg-primary/90 transition-all shadow-md text-base sm:text-lg font-semibold">Book Now</Button>
-                    <Button variant="outline" className="flex-1 h-11 sm:h-14 rounded-lg sm:rounded-xl border-primary text-primary hover:bg-primary/5 transition-all text-base sm:text-lg font-semibold">Rent Car</Button>
+                  <div className="mt-4 sm:mt-8 px-1 sm:px-2">
+                    <Button asChild className="w-full h-11 sm:h-14 rounded-lg sm:rounded-xl bg-primary hover:bg-primary/90 transition-all shadow-md text-base sm:text-lg font-semibold">
+                      <Link
+                        href={getWhatsAppUrl(`Hello IndiaCab, I want to book ${feature.title} at ${(feature as any).price}.`)}
+                        target="_blank"
+                      >
+                        Book Now
+                      </Link>
+                    </Button>
                   </div>
                 </motion.div>
               ))}
@@ -324,9 +333,15 @@ export default function Home() {
                     <span className="text-base text-muted-foreground line-through opacity-50">{(project as any).originalPrice}</span>
                   </div>
                   
-                  <div className="mt-auto flex flex-col sm:flex-row gap-3">
-                    <Button className="flex-1 h-12 rounded-xl bg-foreground text-background hover:bg-foreground/90 font-bold shadow-lg transition-all">Book Car</Button>
-                    <Button variant="outline" className="flex-1 h-12 rounded-xl border-primary text-primary hover:bg-primary/5 font-bold transition-all">Rent Car</Button>
+                  <div className="mt-auto">
+                    <Button asChild className="w-full h-12 rounded-xl bg-foreground text-background hover:bg-foreground/90 font-bold shadow-lg transition-all">
+                      <Link
+                        href={getWhatsAppUrl(`Hello IndiaCab, I want to book ${project.title} at ${(project as any).price}.`)}
+                        target="_blank"
+                      >
+                        Book Car
+                      </Link>
+                    </Button>
                   </div>
                 </motion.div>
               ))}

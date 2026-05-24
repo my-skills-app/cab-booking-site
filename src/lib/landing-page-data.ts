@@ -52,13 +52,13 @@ export const landingPageData = {
         dealText: "Bestseller"
       },
       {
-        image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&q=80",
+        image: "https://i.ibb.co/csTKXrP/nissan-offer-1.png",
         alt: "Local Trip Service",
         hint: "local cab rental",
-        title: "Full Day Local Hire",
-        description: "Book a cab for 8 hours/80km for city shopping or multiple meetings. Clean cars guaranteed.",
-        price: "₹2100",
-        originalPrice: "₹2800",
+        title: "Patna To Darbhanga",
+        description: "Patna से Darbhanga के लिए आरामदायक कैब बुक करें। साफ-सुथरी गाड़ियों और बेहतरीन सफर की पूरी गारंटी।",
+        price: "₹2699",
+        originalPrice: "₹3000",
         discount: "25% OFF",
         dealText: "City Travel"
       },
