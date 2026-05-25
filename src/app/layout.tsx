@@ -74,15 +74,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <LocalBusinessJsonLd />
-        <WebsiteJsonLd />
-      </head>
+    <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased">
         {children}
         <FloatingAction />
         <Toaster />
+        <LocalBusinessJsonLd />
+        <WebsiteJsonLd />
       </body>
     </html>
   );
