@@ -153,18 +153,18 @@ export function Footer() {
             </h3>
             <div className="space-y-4 text-sm text-gray-400 leading-relaxed">
               <p>
-                <span className="text-gray-300 font-medium">Head Office-</span> Add:- दिशा आशियाना मेन रोड, केन्द्रीय आवास बोर्ड के नजदीक, पटना – 800024
+                <span className="text-gray-300 font-medium">Head Office-</span> Add:- आशियाना digha मेन रोड, पटना – 800025
               </p>
               <p>
-                <span className="text-gray-300 font-medium">Second Office-</span> स्टेशन रोड, जनता लॉज के बगल में, हाजी मार्केट, सिवानमार्केट, सिवान
+                <span className="text-gray-300 font-medium">Second Office-</span> Add:- आशियाना digha मेन रोड, पटना – 800025
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Siwan Booking Phone:</span>{" "}
-                <a href="tel:+919241197606" className="hover:text-white transition-colors">9241197606</a>
+                <a href="tel:+911234567890" className="hover:text-white transition-colors">1234567890</a>
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Patna Booking Phone:</span>{" "}
-                <a href="tel:+919060066021" className="hover:text-white transition-colors">9060066021</a>
+                <a href="tel:+911234567890" className="hover:text-white transition-colors">1234567890</a>
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Email:</span>{" "}
