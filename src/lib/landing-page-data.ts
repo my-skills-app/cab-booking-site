@@ -122,7 +122,7 @@ export const landingPageData = {
   },
   team: {
     members: [
-      { name: "Sanjeev Sahani", role: "Elite Driver (10+ yrs exp)", imageId: "team-1" },
+      { name: "Sanjeev Sahani", role: "Founder of Indiascab", imageId: "team-1" },
       { name: "Rahul Singh", role: "City Expert (8+ yrs exp)", imageId: "team-2" },
       { name: "Amit Yadav", role: "Long Route Specialist", imageId: "team-3" },
       { name: "Mohit Verma", role: "Airport Specialist", imageId: "team-4" }
