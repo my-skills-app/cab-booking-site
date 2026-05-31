@@ -153,10 +153,10 @@ export function Footer() {
             </h3>
             <div className="space-y-4 text-sm text-gray-400 leading-relaxed">
               <p>
-                <span className="text-gray-300 font-medium">Head Office-</span> Add:- आशियाना digha मेन रोड, पटना – 800025
+                <span className="text-gray-300 font-medium">Head Office-</span> Add:- आशियाना digha मेन रोड (Ghurdaur road), पटना – 800025
               </p>
               <p>
-                <span className="text-gray-300 font-medium">Second Office-</span> Add:- आशियाना digha मेन रोड, पटना – 800025
+                <span className="text-gray-300 font-medium">Second Office-</span> Add:- आशियाना digha मेन रोड (Ghurdaur road), पटना – 800025
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Siwan Booking Phone:</span>{" "}
@@ -173,7 +173,7 @@ export function Footer() {
                 </a>
               </p>
               <p>
-                <span className="text-gray-300 font-medium">Office Time:</span> 9AM - 7PM
+                <span className="text-gray-300 font-medium">Office Time:</span> 7AM - 10PM
               </p>
             </div>
           </div>
