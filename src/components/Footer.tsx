@@ -160,11 +160,11 @@ export function Footer() {
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Siwan Booking Phone:</span>{" "}
-                <a href="tel:+911234567890" className="hover:text-white transition-colors">1234567890</a>
+                <a href="tel:+91+919204595197" className="hover:text-white transition-colors">+919204595197</a>
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Patna Booking Phone:</span>{" "}
-                <a href="tel:+911234567890" className="hover:text-white transition-colors">1234567890</a>
+                <a href="tel:+91+919204595197" className="hover:text-white transition-colors">+919204595197</a>
               </p>
               <p>
                 <span className="text-gray-300 font-medium">Email:</span>{" "}
