@@ -131,7 +131,7 @@ export default function Home() {
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Oneway Trips</h3>
                       <p className="text-muted-foreground mt-2 text-sm sm:text-base leading-relaxed">
-                        Affordable one-way rides without return fare hassle.
+                        Make every journey simple with affordable and hassle-free one-way cab rides. Whether you're traveling to another city or heading to a single destination, enjoy comfortable, reliable, and budget-friendly travel without paying for a return trip. Book with IndiasCab for a smooth and stress-free ride experience.
                       </p>
                     </div>
                   </div>
@@ -143,7 +143,7 @@ export default function Home() {
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold uppercase tracking-wide">Roundtrip Cabs</h3>
                       <p className="text-muted-foreground mt-2 text-sm sm:text-base leading-relaxed">
-                        Comfortable round trips with scheduled return pickup.
+                        Travel without worries with IndiasCab Roundtrip Rides. From departure to return, we ensure a smooth, safe, and comfortable journey. Enjoy flexible travel plans, affordable pricing, and dependable service tailored to your travel needs.
                       </p>
                     </div>
                   </div>
