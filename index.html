@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>🌐 वेबसाइट बंद है | Temporarily Closed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', 'Inter', 'Roboto', 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #f0f4fa 0%, #dce3ec 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* subtle background pattern */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* main card */
+        .card {
+            max-width: 640px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(2px);
+            border-radius: 56px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,0.6);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.5);
+            z-index: 2;
+            animation: fadeSlideUp 0.65s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* icon wrapper */
+        .icon-wrapper {
+            background: linear-gradient(135deg, #2c3e50, #1a2632);
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .main-icon {
+            font-size: 58px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #1F2A3E, #2c3e66);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #fef2e8;
+            color: #b45f1b;
+            padding: 0.3rem 1rem;
+            border-radius: 80px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.6rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid #ffe0bf;
+        }
+
+        .message-box {
+            background: #f8fafd;
+            border-radius: 32px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid #dc2626;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .main-message {
+            font-size: 1.65rem;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .main-message small {
+            font-weight: 500;
+            font-size: 1rem;
+            display: block;
+            color: #475569;
+            margin-top: 0.4rem;
+        }
+
+        .hindi-phrase {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #0f172a;
+            background: #ffffffd9;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            margin-top: 0.5rem;
+            font-family: 'Segoe UI', system-ui, 'Noto Sans Devanagari', sans-serif;
+        }
+
+        .exact-text {
+            background: #eef2ff;
+            border-radius: 40px;
+            padding: 0.9rem 1.2rem;
+            font-size: 1.18rem;
+            color: #1e293b;
+            font-weight: 500;
+            margin: 1.2rem 0 0.8rem;
+            word-break: break-word;
+            border: 1px solid #cbd5e1;
+        }
+
+        .exact-text span {
+            font-weight: 700;
+            color: #b91c1c;
+            background: #fff0f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .info-detail {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.8rem 0;
+            font-size: 0.9rem;
+            color: #2d3a4b;
+        }
+
+        .info-chip {
+            background: #eef2f9;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        button {
+            background: #1f2e4a;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-top: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        button:hover {
+            background: #0f1f32;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 18px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .footer-note {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 1.8rem;
+            padding-top: 1.2rem;
+            font-size: 0.8rem;
+            color: #4a5b6e;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .time-stamp {
+            background: #f1f5f9;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 520px) {
+            .card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 40px;
+            }
+            .main-message {
+                font-size: 1.35rem;
+            }
+            .exact-text {
+                font-size: 1rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .icon-wrapper {
+                width: 80px;
+                height: 80px;
+            }
+            .main-icon {
+                font-size: 46px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="icon-wrapper">
+        <div class="main-icon">⛔🚫</div>
+    </div>
+    
+    <h1>🔒 अस्थायी रूप से बंद</h1>
+    <div class="badge">⚠️ TEMPORARY SHUTDOWN</div>
+
+    <div class="message-box">
+        <div class="main-message">
+            📢 website ko band kar diya gaya hai
+            <small>कुछ समय के लिए सेवा उपलब्ध नहीं होगी</small>
+        </div>
+        
+        <!-- exact phrase as requested -->
+        <div class="exact-text">
+            <span>🔻 आधिकारिक सूचना 🔻</span><br>
+            “ website ko band kr diya gya hai, aea kuch aye kuch time keliye ”
+        </div>
+        
+        <div class="hindi-phrase">
+            ✨ आएगा कुछ समय के बाद / Will be back after some time ✨
+        </div>
+    </div>
+
+    <div class="info-detail">
+        <div class="info-chip">🕒 बंद कर दिया गया है</div>
+        <div class="info-chip">🔄 जल्द ही वापसी</div>
+        <div class="info-chip">🧰 मेंटेनेंस अवधि</div>
+    </div>
+
+    <!-- dynamic closure timestamp -->
+    <div id="closureTime" class="time-stamp" style="display: inline-block; margin-bottom: 12px;">
+        <!-- JS will inject datetime -->
+    </div>
+
+    <!-- refresh button in case user wants to re-check status -->
+    <button id="refreshBtn">
+        🔄 रिफ्रेश करें / Refresh
+    </button>
+
+    <div class="footer-note">
+        <span>🙏 कृपया थोड़ी देर बाद पुनः प्रयास करें</span>
+        <span>📌 क्षमा करें, असुविधा के लिए खेद है</span>
+    </div>
+    <div style="font-size: 0.7rem; margin-top: 0.5rem; opacity: 0.7;">
+        ⏳ जल्द ही ऑनलाइन आ रहा हूँ — धन्यवाद
+    </div>
+</div>
+
+<script>
+    // display current date/time of closure for transparency
+    const now = new Date();
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true 
+    };
+    const formattedDate = now.toLocaleString('hi-IN', options);
+    const closureElement = document.getElementById('closureTime');
+    if (closureElement) {
+        closureElement.innerHTML = `📆 बंद किया गया : ${formattedDate} | तब से सेवा अनुपलब्ध`;
+    }
+
+    // refresh button functionality (simple reload for checking status)
+    const refreshButton = document.getElementById('refreshBtn');
+    if (refreshButton) {
+        refreshButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            // subtle haptic / visual feedback
+            refreshButton.style.transform = 'scale(0.96)';
+            setTimeout(() => {
+                refreshButton.style.transform = '';
+                window.location.reload();
+            }, 100);
+        });
+    }
+
+    // optional: Add console note, purely informative
+    console.log('⚠️ Website closed temporarily — as requested: "website ko band kr diya gya hai, aea kuch aye kuch time keliye"');
+</script>
+
+</body>
+</html>
