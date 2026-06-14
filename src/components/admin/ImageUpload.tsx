@@ -2,8 +2,9 @@
 
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
-import { Upload, X } from "lucide-react";
+import { Loader2, Upload, X } from "lucide-react";
 
 type ImageUploadProps = {
   value: string;
@@ -11,9 +12,46 @@ type ImageUploadProps = {
   previewClassName?: string;
 };
 
+function uploadWithProgress(
+  file: File,
+  onProgress: (percent: number) => void
+): Promise<{ url: string }> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    const formData = new FormData();
+    formData.append("image", file);
+
+    xhr.upload.addEventListener("progress", (e) => {
+      if (e.lengthComputable) {
+        onProgress(Math.round((e.loaded / e.total) * 100));
+      }
+    });
+
+    xhr.addEventListener("load", () => {
+      try {
+        const data = JSON.parse(xhr.responseText);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(data);
+        } else {
+          reject(new Error(data.error || "Upload failed"));
+        }
+      } catch {
+        reject(new Error("Upload failed"));
+      }
+    });
+
+    xhr.addEventListener("error", () => reject(new Error("Network error during upload")));
+    xhr.addEventListener("abort", () => reject(new Error("Upload cancelled")));
+
+    xhr.open("POST", "/api/admin/upload-image");
+    xhr.send(formData);
+  });
+}
+
 export function ImageUpload({ value, onChange, previewClassName = "h-28 w-full max-w-[200px]" }: ImageUploadProps) {
   const { toast } = useToast();
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = async (file: File) => {
@@ -27,30 +65,24 @@ export function ImageUpload({ value, onChange, previewClassName = "h-28 w-full m
     }
 
     setUploading(true);
+    setProgress(0);
     try {
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const res = await fetch("/api/admin/upload-image", { method: "POST", body: formData });
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Upload failed");
-      }
-
+      const data = await uploadWithProgress(file, setProgress);
       onChange(data.url);
-      toast({ title: "Image uploaded" });
+      setProgress(100);
+      toast({ title: "Image uploaded successfully" });
     } catch (error) {
       toast({ title: "Upload failed", description: (error as Error).message, variant: "destructive" });
     } finally {
       setUploading(false);
+      setTimeout(() => setProgress(0), 600);
       if (inputRef.current) inputRef.current.value = "";
     }
   };
 
   return (
     <div className="space-y-2">
-      {value && (
+      {value && !uploading && (
         <div className="relative inline-block">
           <img
             src={value}
@@ -63,9 +95,20 @@ export function ImageUpload({ value, onChange, previewClassName = "h-28 w-full m
             variant="destructive"
             className="absolute -top-2 -right-2 h-7 w-7 rounded-full shadow-md"
             onClick={() => onChange("")}
+            disabled={uploading}
           >
             <X className="w-3.5 h-3.5" />
           </Button>
+        </div>
+      )}
+
+      {uploading && (
+        <div className="rounded-lg border border-border bg-muted/40 p-4 space-y-3 max-w-[280px]">
+          <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+            <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+            Uploading image… {progress}%
+          </div>
+          <Progress value={progress} className="h-2" />
         </div>
       )}
 
@@ -74,6 +117,7 @@ export function ImageUpload({ value, onChange, previewClassName = "h-28 w-full m
         type="file"
         accept="image/*"
         className="hidden"
+        disabled={uploading}
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file) handleFile(file);
@@ -88,8 +132,17 @@ export function ImageUpload({ value, onChange, previewClassName = "h-28 w-full m
         disabled={uploading}
         onClick={() => inputRef.current?.click()}
       >
-        <Upload className="w-4 h-4" />
-        {uploading ? "Uploading..." : value ? "Change Image" : "Upload Image"}
+        {uploading ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Uploading {progress}%
+          </>
+        ) : (
+          <>
+            <Upload className="w-4 h-4" />
+            {value ? "Change Image" : "Upload Image"}
+          </>
+        )}
       </Button>
     </div>
   );

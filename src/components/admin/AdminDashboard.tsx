@@ -23,8 +23,11 @@ import {
   Trash2,
   Plus,
   RefreshCw,
+  Loader2,
 } from "lucide-react";
 import { ImageUpload } from "@/components/admin/ImageUpload";
+import { YouTubeUrlInput } from "@/components/admin/YouTubeUrlInput";
+import { toYouTubeEmbedUrl } from "@/lib/youtube";
 import type {
   BookingSubmission,
   CustomerReview,
@@ -58,19 +61,40 @@ function ActionButtons({
   onDelete,
   saveLabel = "Save",
 }: {
-  onSave: () => void;
-  onDelete: () => void;
+  onSave: () => void | Promise<void>;
+  onDelete: () => void | Promise<void>;
   saveLabel?: string;
 }) {
+  const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      await onSave();
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setDeleting(true);
+    try {
+      await onDelete();
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   return (
     <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto pt-2">
-      <Button onClick={onSave} className="w-full sm:w-auto gap-2" size="sm">
-        <Save className="w-4 h-4" />
-        {saveLabel}
+      <Button onClick={handleSave} className="w-full sm:w-auto gap-2" size="sm" disabled={saving || deleting}>
+        {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+        {saving ? "Saving…" : saveLabel}
       </Button>
-      <Button onClick={onDelete} variant="destructive" className="w-full sm:w-auto gap-2" size="sm">
-        <Trash2 className="w-4 h-4" />
-        Delete
+      <Button onClick={handleDelete} variant="destructive" className="w-full sm:w-auto gap-2" size="sm" disabled={saving || deleting}>
+        {deleting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
+        {deleting ? "Deleting…" : "Delete"}
       </Button>
     </div>
   );
@@ -101,6 +125,9 @@ export function AdminDashboard() {
   const [bookings, setBookings] = useState<BookingSubmission[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [savingSettings, setSavingSettings] = useState(false);
+  const [importing, setImporting] = useState(false);
+  const [deletingBookingId, setDeletingBookingId] = useState<string | null>(null);
 
   const loadAll = async (silent = false) => {
     if (!silent) setLoading(true);
@@ -136,12 +163,19 @@ export function AdminDashboard() {
 
   const saveSettings = async () => {
     if (!settings) return;
-    await api("/api/admin/settings", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(settings),
-    });
-    toast({ title: "Settings saved" });
+    setSavingSettings(true);
+    try {
+      await api("/api/admin/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(settings),
+      });
+      toast({ title: "Settings saved" });
+    } catch (e) {
+      toast({ title: "Save failed", description: (e as Error).message, variant: "destructive" });
+    } finally {
+      setSavingSettings(false);
+    }
   };
 
   const logout = async () => {
@@ -150,6 +184,7 @@ export function AdminDashboard() {
   };
 
   const importStaticData = async () => {
+    setImporting(true);
     try {
       const res = await api<{ message: string }>("/api/admin/seed", {
         method: "POST",
@@ -160,6 +195,8 @@ export function AdminDashboard() {
       loadAll(true);
     } catch (e) {
       toast({ title: "Import failed", description: (e as Error).message, variant: "destructive" });
+    } finally {
+      setImporting(false);
     }
   };
 
@@ -205,9 +242,9 @@ export function AdminDashboard() {
               </Button>
             </div>
             <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
-              <Button variant="secondary" size="sm" onClick={importStaticData} className="gap-1.5 text-xs sm:text-sm">
-                <Download className="w-3.5 h-3.5" />
-                <span className="truncate">Import Data</span>
+              <Button variant="secondary" size="sm" onClick={importStaticData} disabled={importing} className="gap-1.5 text-xs sm:text-sm">
+                {importing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
+                <span className="truncate">{importing ? "Importing…" : "Import Data"}</span>
               </Button>
               <Button variant="outline" size="sm" asChild className="gap-1.5 text-xs sm:text-sm">
                 <a href="/" target="_blank">
@@ -295,9 +332,9 @@ export function AdminDashboard() {
                         className="h-11"
                       />
                     </Field>
-                    <Button onClick={saveSettings} className="w-full sm:w-auto gap-2 h-11">
-                      <Save className="w-4 h-4" />
-                      Save Settings
+                    <Button onClick={saveSettings} disabled={savingSettings} className="w-full sm:w-auto gap-2 h-11">
+                      {savingSettings ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
+                      {savingSettings ? "Saving…" : "Save Settings"}
                     </Button>
                   </>
                 )}
@@ -358,13 +395,27 @@ export function AdminDashboard() {
                       size="sm"
                       variant="destructive"
                       className="w-full sm:w-auto gap-2 mt-1"
+                      disabled={deletingBookingId === b._id}
                       onClick={async () => {
-                        await api(`/api/admin/bookings/${b._id}`, { method: "DELETE" });
-                        loadAll(true);
+                        if (!b._id) return;
+                        setDeletingBookingId(b._id);
+                        try {
+                          await api(`/api/admin/bookings/${b._id}`, { method: "DELETE" });
+                          toast({ title: "Booking deleted" });
+                          loadAll(true);
+                        } catch (e) {
+                          toast({ title: "Delete failed", description: (e as Error).message, variant: "destructive" });
+                        } finally {
+                          setDeletingBookingId(null);
+                        }
                       }}
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
-                      Delete
+                      {deletingBookingId === b._id ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <Trash2 className="w-3.5 h-3.5" />
+                      )}
+                      {deletingBookingId === b._id ? "Deleting…" : "Delete"}
                     </Button>
                   </div>
                 ))}
@@ -381,12 +432,20 @@ function PricingFaresTab({ items, onRefresh }: { items: PricingFare[]; onRefresh
   const { toast } = useToast();
   const empty = { title: "", description: "", price: "", originalPrice: "", discount: "", dealText: "", image: "", alt: "", hint: "" };
   const [form, setForm] = useState(empty);
+  const [adding, setAdding] = useState(false);
 
   const save = async () => {
-    await api("/api/admin/pricing-fares", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-    setForm(empty);
-    toast({ title: "Pricing fare added" });
-    onRefresh();
+    setAdding(true);
+    try {
+      await api("/api/admin/pricing-fares", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+      setForm(empty);
+      toast({ title: "Pricing fare added" });
+      onRefresh();
+    } catch (e) {
+      toast({ title: "Failed", description: (e as Error).message, variant: "destructive" });
+    } finally {
+      setAdding(false);
+    }
   };
 
   return (
@@ -411,8 +470,9 @@ function PricingFaresTab({ items, onRefresh }: { items: PricingFare[]; onRefresh
           <Field label="Description" className="sm:col-span-2">
             <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="min-h-[80px]" />
           </Field>
-          <Button onClick={save} className="sm:col-span-2 w-full sm:w-auto gap-2">
-            <Plus className="w-4 h-4" /> Add Fare
+          <Button onClick={save} disabled={adding} className="sm:col-span-2 w-full sm:w-auto gap-2">
+            {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {adding ? "Adding…" : "Add Fare"}
           </Button>
         </CardContent>
       </Card>
@@ -492,6 +552,7 @@ function PopularFaresTab({ items, onRefresh }: { items: PopularFare[]; onRefresh
   const { toast } = useToast();
   const [route, setRoute] = useState("");
   const [price, setPrice] = useState("");
+  const [adding, setAdding] = useState(false);
 
   return (
     <>
@@ -505,15 +566,24 @@ function PopularFaresTab({ items, onRefresh }: { items: PopularFare[]; onRefresh
             <Field label="Price"><Input value={price} onChange={(e) => setPrice(e.target.value)} className="h-10" placeholder="₹ 2599" /></Field>
           </div>
           <Button
+            disabled={adding}
             onClick={async () => {
-              await api("/api/admin/popular-fares", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ route, price }) });
-              setRoute(""); setPrice("");
-              toast({ title: "Added" });
-              onRefresh();
+              setAdding(true);
+              try {
+                await api("/api/admin/popular-fares", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ route, price }) });
+                setRoute(""); setPrice("");
+                toast({ title: "Added" });
+                onRefresh();
+              } catch (e) {
+                toast({ title: "Failed", description: (e as Error).message, variant: "destructive" });
+              } finally {
+                setAdding(false);
+              }
             }}
             className="w-full sm:w-auto gap-2"
           >
-            <Plus className="w-4 h-4" /> Add Fare
+            {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {adding ? "Adding…" : "Add Fare"}
           </Button>
         </CardContent>
       </Card>
@@ -547,6 +617,7 @@ function PopularFaresTab({ items, onRefresh }: { items: PopularFare[]; onRefresh
 function TeamTab({ items, onRefresh }: { items: TeamMember[]; onRefresh: () => void }) {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", role: "", imageUrl: "" });
+  const [adding, setAdding] = useState(false);
 
   return (
     <>
@@ -563,15 +634,24 @@ function TeamTab({ items, onRefresh }: { items: TeamMember[]; onRefresh: () => v
             </Field>
           </div>
           <Button
+            disabled={adding}
             onClick={async () => {
-              await api("/api/admin/team-members", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-              setForm({ name: "", role: "", imageUrl: "" });
-              toast({ title: "Added" });
-              onRefresh();
+              setAdding(true);
+              try {
+                await api("/api/admin/team-members", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+                setForm({ name: "", role: "", imageUrl: "" });
+                toast({ title: "Added" });
+                onRefresh();
+              } catch (e) {
+                toast({ title: "Failed", description: (e as Error).message, variant: "destructive" });
+              } finally {
+                setAdding(false);
+              }
             }}
             className="w-full sm:w-auto gap-2"
           >
-            <Plus className="w-4 h-4" /> Add Member
+            {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {adding ? "Adding…" : "Add Member"}
           </Button>
         </CardContent>
       </Card>
@@ -585,81 +665,123 @@ function TeamTab({ items, onRefresh }: { items: TeamMember[]; onRefresh: () => v
 function VideosTab({ items, onRefresh }: { items: TestimonialVideo[]; onRefresh: () => void }) {
   const { toast } = useToast();
   const [form, setForm] = useState({ src: "", title: "" });
+  const [adding, setAdding] = useState(false);
+
+  const submitVideo = async () => {
+    const embedSrc = toYouTubeEmbedUrl(form.src);
+    setAdding(true);
+    try {
+      await api("/api/admin/testimonial-videos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, src: embedSrc }),
+      });
+      setForm({ src: "", title: "" });
+      toast({ title: "Video added" });
+      onRefresh();
+    } catch (e) {
+      toast({ title: "Failed", description: (e as Error).message, variant: "destructive" });
+    } finally {
+      setAdding(false);
+    }
+  };
 
   return (
     <>
       <Card className="border-border/60 shadow-sm border-dashed">
         <CardHeader className="px-4 sm:px-6">
           <CardTitle className="text-base sm:text-lg">Add Testimonial Video</CardTitle>
+          <CardDescription>Paste any YouTube link — watch, share, or shorts. We convert to embed automatically.</CardDescription>
         </CardHeader>
         <CardContent className="px-4 sm:px-6 space-y-3">
           <div className="grid sm:grid-cols-2 gap-3">
-            <Field label="YouTube Embed URL" className="sm:col-span-2">
-              <Input placeholder="https://www.youtube.com/embed/..." value={form.src} onChange={(e) => setForm({ ...form, src: e.target.value })} className="h-10" />
+            <Field label="YouTube URL" className="sm:col-span-2">
+              <YouTubeUrlInput
+                value={form.src}
+                onChange={(src) => setForm({ ...form, src })}
+                className="h-10"
+              />
             </Field>
             <Field label="Title"><Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="h-10" /></Field>
           </div>
-          <Button
-            onClick={async () => {
-              await api("/api/admin/testimonial-videos", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-              setForm({ src: "", title: "" });
-              toast({ title: "Video added" });
-              onRefresh();
-            }}
-            className="w-full sm:w-auto gap-2"
-          >
-            <Plus className="w-4 h-4" /> Add Video
+          <Button onClick={submitVideo} disabled={adding || !form.src.trim()} className="w-full sm:w-auto gap-2">
+            {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {adding ? "Adding…" : "Add Video"}
           </Button>
         </CardContent>
       </Card>
       <div className="space-y-3">
-        {items.map((item) => (
-          <ItemCard key={item._id} title={item.title}>
-            <div className="space-y-3">
-              <Field label="Embed URL"><Input defaultValue={item.src} id={`src-${item._id}`} className="h-10 text-xs sm:text-sm" /></Field>
-              <Field label="Title"><Input defaultValue={item.title} id={`title-${item._id}`} className="h-10" /></Field>
-            </div>
-            <ActionButtons
-              onSave={async () => {
-                await api(`/api/admin/testimonial-videos/${item._id}`, {
-                  method: "PUT",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    src: (document.getElementById(`src-${item._id}`) as HTMLInputElement).value,
-                    title: (document.getElementById(`title-${item._id}`) as HTMLInputElement).value,
-                  }),
-                });
-                toast({ title: "Updated" });
-                onRefresh();
-              }}
-              onDelete={async () => {
-                await api(`/api/admin/testimonial-videos/${item._id}`, { method: "DELETE" });
-                onRefresh();
-              }}
-            />
-          </ItemCard>
-        ))}
+        {items.map((item) => <EditableVideoCard key={item._id} item={item} onRefresh={onRefresh} />)}
       </div>
     </>
+  );
+}
+
+function EditableVideoCard({ item, onRefresh }: { item: TestimonialVideo; onRefresh: () => void }) {
+  const [form, setForm] = useState({ src: item.src, title: item.title });
+  const { toast } = useToast();
+
+  return (
+    <ItemCard title={item.title}>
+      <div className="space-y-3">
+        <Field label="YouTube URL">
+          <YouTubeUrlInput
+            value={form.src}
+            onChange={(src) => setForm({ ...form, src })}
+            className="h-10 text-xs sm:text-sm"
+          />
+        </Field>
+        <Field label="Title"><Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="h-10" /></Field>
+      </div>
+      <ActionButtons
+        onSave={async () => {
+          const embedSrc = toYouTubeEmbedUrl(form.src);
+          await api(`/api/admin/testimonial-videos/${item._id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...form, src: embedSrc }),
+          });
+          setForm((f) => ({ ...f, src: embedSrc }));
+          toast({ title: "Updated" });
+          onRefresh();
+        }}
+        onDelete={async () => {
+          await api(`/api/admin/testimonial-videos/${item._id}`, { method: "DELETE" });
+          onRefresh();
+        }}
+      />
+    </ItemCard>
   );
 }
 
 function ReviewsTab({ items, onRefresh }: { items: CustomerReview[]; onRefresh: () => void }) {
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", location: "", route: "", rating: 5, review: "", avatar: "" });
+  const [generating, setGenerating] = useState(false);
+  const [adding, setAdding] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   return (
     <>
       <Button
         variant="secondary"
         className="w-full sm:w-auto gap-2"
+        disabled={generating}
         onClick={async () => {
-          await api("/api/admin/reviews", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "generate", count: 3 }) });
-          toast({ title: "Generated 3 fake reviews" });
-          onRefresh();
+          setGenerating(true);
+          try {
+            await api("/api/admin/reviews", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "generate", count: 3 }) });
+            toast({ title: "Generated 3 fake reviews" });
+            onRefresh();
+          } catch (e) {
+            toast({ title: "Failed", description: (e as Error).message, variant: "destructive" });
+          } finally {
+            setGenerating(false);
+          }
         }}
       >
-        <Star className="w-4 h-4" /> Generate 3 Fake Reviews
+        {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Star className="w-4 h-4" />}
+        {generating ? "Generating…" : "Generate 3 Fake Reviews"}
       </Button>
       <Card className="border-border/60 shadow-sm border-dashed">
         <CardHeader className="px-4 sm:px-6">
@@ -675,14 +797,23 @@ function ReviewsTab({ items, onRefresh }: { items: CustomerReview[]; onRefresh: 
           </Field>
           <Field label="Review" className="sm:col-span-2"><Textarea value={form.review} onChange={(e) => setForm({ ...form, review: e.target.value })} className="min-h-[80px]" /></Field>
           <Button
+            disabled={adding}
             onClick={async () => {
-              await api("/api/admin/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-              toast({ title: "Review added" });
-              onRefresh();
+              setAdding(true);
+              try {
+                await api("/api/admin/reviews", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+                toast({ title: "Review added" });
+                onRefresh();
+              } catch (e) {
+                toast({ title: "Failed", description: (e as Error).message, variant: "destructive" });
+              } finally {
+                setAdding(false);
+              }
             }}
             className="sm:col-span-2 w-full sm:w-auto gap-2"
           >
-            <Plus className="w-4 h-4" /> Add Review
+            {adding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
+            {adding ? "Adding…" : "Add Review"}
           </Button>
         </CardContent>
       </Card>
@@ -700,12 +831,23 @@ function ReviewsTab({ items, onRefresh }: { items: CustomerReview[]; onRefresh: 
                 size="sm"
                 variant="destructive"
                 className="w-full sm:w-auto gap-2 mt-1"
+                disabled={deletingId === item._id}
                 onClick={async () => {
-                  await api(`/api/admin/reviews/${item._id}`, { method: "DELETE" });
-                  onRefresh();
+                  if (!item._id) return;
+                  setDeletingId(item._id);
+                  try {
+                    await api(`/api/admin/reviews/${item._id}`, { method: "DELETE" });
+                    toast({ title: "Review deleted" });
+                    onRefresh();
+                  } catch (e) {
+                    toast({ title: "Delete failed", description: (e as Error).message, variant: "destructive" });
+                  } finally {
+                    setDeletingId(null);
+                  }
                 }}
               >
-                <Trash2 className="w-3.5 h-3.5" /> Delete
+                {deletingId === item._id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
+                {deletingId === item._id ? "Deleting…" : "Delete"}
               </Button>
             </CardContent>
           </Card>
