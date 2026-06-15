@@ -66,7 +66,7 @@ export default function AdminPage() {
               <Car className="w-6 h-6 text-white" />
             </div>
             <h1 className="text-2xl font-bold tracking-tight">Admin Login</h1>
-            <p className="text-sm text-muted-foreground mt-1">IndiaCab content management</p>
+            <p className="text-sm text-muted-foreground mt-1">IndiasCab content management</p>
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>

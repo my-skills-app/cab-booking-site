@@ -1,6 +1,6 @@
 export const aboutPageData = {
   hero: {
-    title: "About IndiaCab",
+    title: "About IndiasCab",
     subtitle: "Connecting people and places with safety, comfort, and reliability since our inception.",
   },
   marquee: {
@@ -9,7 +9,7 @@ export const aboutPageData = {
   digitalFuture: {
     title: "Revolutionizing Local Travel",
     paragraphs: [
-      "At IndiaCab, we believe that every journey should be more than just travel - it should be an experience of comfort and trust. Founded with the vision to provide premium cab services in Bihar and Uttar Pradesh, we have grown into a leading travel partner for thousands of travelers.",
+      "At IndiasCab, we believe that every journey should be more than just travel - it should be an experience of comfort and trust. Founded with the vision to provide premium cab services in Bihar and Uttar Pradesh, we have grown into a leading travel partner for thousands of travelers.",
       "Starting from Siwan, we have expanded our services to Patna, Gorakhpur, Lucknow, and beyond. Our mission is to make intercity and local travel affordable, safe, and easily accessible for everyone.",
     ],
   },

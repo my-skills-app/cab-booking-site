@@ -8,7 +8,7 @@ export const contactPageData = {
   },
   info: {
     address1: {
-      line1: "IndiaCab Services, Near SBI ATM",
+      line1: "IndiasCab Services, Near SBI ATM",
       line2: "Siwan, Bihar, India"
     },
     address2: "Patna Office: Bypass Road, Patna, Bihar",
