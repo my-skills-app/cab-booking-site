@@ -56,7 +56,7 @@ export function Hero({ popularFares = [] }: HeroProps) {
 
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center mb-8 sm:mb-10 px-4">
               <Link
-                href={getWhatsAppUrl("Hello IndiaCab, I want to book a trip.")}
+                href={getWhatsAppUrl("Hello IndiasCab, I want to book a trip.")}
                 target="_blank"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-lg hover:bg-[#20bd5a] transition-all duration-300 shadow-xl shadow-green-500/20 flex items-center justify-center gap-3 active:scale-95"
               >
@@ -86,7 +86,7 @@ export function Hero({ popularFares = [] }: HeroProps) {
                 {popularFares.map((fare) => (
                   <Link
                     key={fare._id || fare.route}
-                    href={getWhatsAppUrl(`Hello IndiaCab, I want to book a trip from ${fare.route} at ${fare.price}.`)}
+                    href={getWhatsAppUrl(`Hello IndiasCab, I want to book a trip from ${fare.route} at ${fare.price}.`)}
                     target="_blank"
                     className="bg-background rounded-xl sm:rounded-2xl p-3 sm:p-5 flex justify-between items-center border border-border/50 shadow-sm hover:border-blue-300 hover:shadow-md transition-all group/item cursor-pointer"
                   >

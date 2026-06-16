@@ -208,7 +208,7 @@ export function HomePage({ initialContent }: { initialContent: SiteContent }) {
                   <div className="mt-4 sm:mt-8 px-1 sm:px-2">
                     <Button asChild className="w-full h-11 sm:h-14 rounded-lg sm:rounded-xl bg-primary hover:bg-primary/90 transition-all shadow-md text-base sm:text-lg font-semibold">
                       <Link
-                        href={getWhatsAppUrl(`Hello IndiaCab, I want to book ${feature.title} at ${feature.price}.`)}
+                        href={getWhatsAppUrl(`Hello IndiasCab, I want to book ${feature.title} at ${feature.price}.`)}
                         target="_blank"
                       >
                         Book Now

@@ -228,7 +228,7 @@ export function AdminDashboard() {
           <div className="flex flex-col gap-3">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <h1 className="text-lg sm:text-xl font-bold tracking-tight truncate">IndiaCab Admin</h1>
+                <h1 className="text-lg sm:text-xl font-bold tracking-tight truncate">IndiasCab Admin</h1>
                 <p className="text-xs sm:text-sm text-muted-foreground">Manage content & bookings</p>
               </div>
               <Button

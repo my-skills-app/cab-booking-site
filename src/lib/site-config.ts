@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "IndiaCab",
-  siteUrl: "https://indiacab.in",
+  name: "IndiasCab",
+  siteUrl: "https://IndiasCab.in",
   logoUrl: "https://i.ibb.co/YSZNySy/logo-cabsite.png",
   contactEmail: "indiascab9@gmail.com",
   phoneNumber: "+919204595197",
   description:
-    "IndiaCab - Premium and reliable cab services in Bihar and UP. One-way drops, round trips, airport taxi, and outstation cabs at affordable rates. Book Patna to Siwan, Gorakhpur, Varanasi, Delhi, and 50+ routes.",
+    "IndiasCab - Premium and reliable cab services in Bihar and UP. One-way drops, round trips, airport taxi, and outstation cabs at affordable rates. Book Patna to Siwan, Gorakhpur, Varanasi, Delhi, and 50+ routes.",
   keywords: [
     "cab booking",
     "cab service Patna",
@@ -23,7 +23,7 @@ export const siteConfig = {
     "Siwan to Gorakhpur cab",
     "Siwan to Varanasi cab",
     "cheap cab Bihar",
-    "IndiaCab",
+    "IndiasCab",
     "taxi service Bihar",
     "online cab booking Bihar",
     "cab service UP",

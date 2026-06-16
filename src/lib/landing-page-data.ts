@@ -2,7 +2,7 @@ export const landingPageData = {
   hero: {
     mainImage: {
       src: "https://i.ibb.co/wh7SdL8R/logo122.png",
-      alt: "IndiaCab Founders"
+      alt: "IndiasCab Founders"
     },
     paragraph: "Experience the most reliable and comfortable cab service in Bihar and UP. Whether it's a one-way trip, a round journey",
     socialProof: {
@@ -68,7 +68,7 @@ export const landingPageData = {
 
   videoShowcase: {
     youtubeVideoUrl: "https://www.youtube.com/embed/SjRhP-1pElI", // Placeholder, user mentioned keeping it or updating
-    title: "Why Choose IndiaCab?"
+    title: "Why Choose IndiasCab?"
   },
   socialPresence: {
     videos: [
@@ -146,7 +146,7 @@ export const landingPageData = {
         location: "Siwan, Bihar",
         route: "Siwan To Delhi",
         rating: 5,
-        review: "Delhi ke liye IndiaCab se book kiya. Long route par bhi driver bahut professional tha. Highly recommended!",
+        review: "Delhi ke liye IndiasCab se book kiya. Long route par bhi driver bahut professional tha. Highly recommended!",
         avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
       },
       {
@@ -186,7 +186,7 @@ export const landingPageData = {
   faq: {
     items: [
       {
-        question: "How do I book a IndiaCab?",
+        question: "How do I book a IndiasCab?",
         answer: "You can book directly via our website form or call us on our 24/7 helpline number. We provide instant confirmation."
       },
       {

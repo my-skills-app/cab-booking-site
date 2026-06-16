@@ -18,7 +18,7 @@ const ROUTES = [
 
 const REVIEW_TEMPLATES = [
   "Bahut accha experience tha! Driver time par aaya aur gaadi bilkul saaf thi. Safar comfortable raha.",
-  "IndiaCab se book kiya. Driver bahut professional tha. Highly recommended!",
+  "IndiasCab se book kiya. Driver bahut professional tha. Highly recommended!",
   "Fixed price thi, koi hidden charge nahi. Will book again.",
   "Family ke saath travel kiya. Gaadi comfortable thi aur driver helpful tha. Safe journey!",
   "One-way trip book ki thi. Price reasonable thi aur cab time par mil gayi.",
