@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { forceSeedDatabase, getSeedCounts, seedDatabaseIfEmpty } from "@/lib/seed";
 import { requireAdmin } from "@/lib/admin-api";
+import { revalidatePublicSite } from "@/lib/revalidate-site";
 
 export async function POST(request: Request) {
   const authError = await requireAdmin();
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
     }
 
     const counts = await getSeedCounts();
+    revalidatePublicSite();
     return NextResponse.json({
       success: true,
       message: force ? "Static data imported." : "Static data seeded.",

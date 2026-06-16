@@ -8,6 +8,8 @@ import { LocalBusinessJsonLd, WebsiteJsonLd } from "@/components/JsonLd";
 import { Providers } from "@/components/Providers";
 import { getSiteSettings } from "@/lib/content-service";
 
+export const dynamic = "force-dynamic";
+
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],

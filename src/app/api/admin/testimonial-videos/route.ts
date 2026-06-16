@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { TestimonialVideo, serializeDoc } from "@/lib/models";
 import { requireAdmin } from "@/lib/admin-api";
+import { revalidatePublicSite } from "@/lib/revalidate-site";
 
 export async function GET() {
   const authError = await requireAdmin();
@@ -20,5 +21,6 @@ export async function POST(request: Request) {
   await connectDB();
   const count = await TestimonialVideo.countDocuments();
   const item = await TestimonialVideo.create({ ...body, order: body.order ?? count });
+  revalidatePublicSite();
   return NextResponse.json(serializeDoc(item.toObject()));
 }

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { Settings, serializeDoc } from "@/lib/models";
 import { requireAdmin } from "@/lib/admin-api";
+import { revalidatePublicSite } from "@/lib/revalidate-site";
 
 export async function GET() {
   const authError = await requireAdmin();
@@ -23,5 +24,6 @@ export async function PUT(request: Request) {
     { phoneNumber: body.phoneNumber, contactEmail: body.contactEmail },
     { new: true, upsert: true }
   );
+  revalidatePublicSite();
   return NextResponse.json(serializeDoc(settings!.toObject()));
 }

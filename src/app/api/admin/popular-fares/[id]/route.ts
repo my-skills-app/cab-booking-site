@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { PopularFare, serializeDoc } from "@/lib/models";
 import { requireAdmin } from "@/lib/admin-api";
+import { revalidatePublicSite } from "@/lib/revalidate-site";
 
 export async function PUT(
   request: Request,
@@ -15,6 +16,7 @@ export async function PUT(
   await connectDB();
   const item = await PopularFare.findByIdAndUpdate(id, body, { new: true });
   if (!item) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  revalidatePublicSite();
   return NextResponse.json(serializeDoc(item.toObject()));
 }
 
@@ -28,5 +30,6 @@ export async function DELETE(
   const { id } = await params;
   await connectDB();
   await PopularFare.findByIdAndDelete(id);
+  revalidatePublicSite();
   return NextResponse.json({ success: true });
 }

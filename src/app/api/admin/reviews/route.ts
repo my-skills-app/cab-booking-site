@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/mongodb";
 import { CustomerReview, serializeDoc } from "@/lib/models";
 import { requireAdmin } from "@/lib/admin-api";
 import { generateFakeReview } from "@/lib/fake-review-generator";
+import { revalidatePublicSite } from "@/lib/revalidate-site";
 
 export async function GET() {
   const authError = await requireAdmin();
@@ -20,6 +21,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   await connectDB();
   const item = await CustomerReview.create(body);
+  revalidatePublicSite();
   return NextResponse.json(serializeDoc(item.toObject()));
 }
 
@@ -32,6 +34,7 @@ export async function PUT(request: Request) {
     await connectDB();
     const reviews = Array.from({ length: Math.min(count, 10) }, () => generateFakeReview());
     const created = await CustomerReview.insertMany(reviews);
+    revalidatePublicSite();
     return NextResponse.json(created.map((d) => serializeDoc(d.toObject())));
   }
 
