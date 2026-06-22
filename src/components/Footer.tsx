@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { useSiteSettings } from "@/components/SiteProvider";
+import { SocialMediaLinks } from "@/components/SocialMediaLinks";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -91,6 +92,10 @@ export function Footer() {
                 Join
               </Button>
             </form>
+            <div className="mt-5">
+              <h4 className="text-white text-xs font-semibold uppercase tracking-wider mb-3">Follow Us</h4>
+              <SocialMediaLinks variant="branded" iconSize="md" />
+            </div>
           </div>
 
           {/* Site Links */}
@@ -168,21 +173,17 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-700/50 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-500">
-            © 2026 {siteConfig.name}. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <a href={`tel:${phone}`} className="text-xs text-gray-500 hover:text-white transition-colors">
+        <div className="mt-12 pt-8 border-t border-gray-700/50 space-y-6">
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-white text-xs font-semibold uppercase tracking-widest">Connect With Us</p>
+            <SocialMediaLinks variant="branded" iconSize="lg" className="justify-center" />
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-xs text-gray-500 text-center sm:text-left">
+              © 2026 {siteConfig.name}. All rights reserved.
+            </p>
+            <a href={`tel:${phone}`} className="text-xs text-gray-400 hover:text-white transition-colors">
               Call: {phone}
-            </a>
-            <a
-              href={`https://wa.me/${phone.replace("+", "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs text-gray-500 hover:text-green-400 transition-colors"
-            >
-              WhatsApp
             </a>
           </div>
         </div>

@@ -17,6 +17,7 @@ import { LazyIframe } from "@/components/LazyIframe";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { useSiteSettings } from "@/components/SiteProvider";
+import { getWhatsAppUrl } from "@/lib/site-settings";
 import type { SiteContent } from "@/lib/types";
 
 export function HomePage({ initialContent }: { initialContent: SiteContent }) {
@@ -39,8 +40,7 @@ export function HomePage({ initialContent }: { initialContent: SiteContent }) {
   }, [emblaApi]);
 
   const phone = settings.phoneNumber;
-  const getWhatsAppUrl = (message: string) =>
-    `https://wa.me/${phone.replace("+", "")}?text=${encodeURIComponent(message)}`;
+  const buildWhatsAppUrl = (message: string) => getWhatsAppUrl(settings, message);
 
   const pricingFares = initialContent.pricingFares;
   const popularFares = initialContent.popularFares;
@@ -208,7 +208,7 @@ export function HomePage({ initialContent }: { initialContent: SiteContent }) {
                   <div className="mt-4 sm:mt-8 px-1 sm:px-2">
                     <Button asChild className="w-full h-11 sm:h-14 rounded-lg sm:rounded-xl bg-primary hover:bg-primary/90 transition-all shadow-md text-base sm:text-lg font-semibold">
                       <Link
-                        href={getWhatsAppUrl(`Hello IndiasCab, I want to book ${feature.title} at ${feature.price}.`)}
+                        href={buildWhatsAppUrl(`Hello IndiasCab, I want to book ${feature.title} at ${feature.price}.`)}
                         target="_blank"
                       >
                         Book Now

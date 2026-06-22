@@ -24,10 +24,12 @@ import {
   Plus,
   RefreshCw,
   Loader2,
+  Share2,
 } from "lucide-react";
 import { ImageUpload } from "@/components/admin/ImageUpload";
 import { YouTubeUrlInput } from "@/components/admin/YouTubeUrlInput";
 import { toYouTubeEmbedUrl } from "@/lib/youtube";
+import { normalizeSiteSettings } from "@/lib/site-settings";
 import type {
   BookingSubmission,
   CustomerReview,
@@ -142,7 +144,7 @@ export function AdminDashboard() {
         api<CustomerReview[]>("/api/admin/reviews"),
         api<BookingSubmission[]>("/api/admin/bookings"),
       ]);
-      setSettings(s);
+      setSettings(s ? normalizeSiteSettings(s) : null);
       setPricingFares(p);
       setPopularFares(pf);
       setTeamMembers(t);
@@ -165,11 +167,12 @@ export function AdminDashboard() {
     if (!settings) return;
     setSavingSettings(true);
     try {
-      await api("/api/admin/settings", {
+      const updated = await api<SiteSettings>("/api/admin/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(settings),
       });
+      setSettings(normalizeSiteSettings(updated));
       toast({ title: "Settings saved" });
     } catch (e) {
       toast({ title: "Save failed", description: (e as Error).message, variant: "destructive" });
@@ -313,9 +316,9 @@ export function AdminDashboard() {
             <Card className="border-border/60 shadow-sm">
               <CardHeader className="px-4 sm:px-6">
                 <CardTitle className="text-base sm:text-lg">Site Settings</CardTitle>
-                <CardDescription>Phone number & email used across the website</CardDescription>
+                <CardDescription>Phone, email & social media links used across the website</CardDescription>
               </CardHeader>
-              <CardContent className="px-4 sm:px-6 space-y-4 max-w-lg">
+              <CardContent className="px-4 sm:px-6 space-y-6 max-w-lg">
                 {settings && (
                   <>
                     <Field label="Phone Number (Hero / WhatsApp / Call)">
@@ -332,6 +335,96 @@ export function AdminDashboard() {
                         className="h-11"
                       />
                     </Field>
+
+                    <div className="space-y-4 pt-2 border-t">
+                      <div className="flex items-center gap-2">
+                        <Share2 className="w-4 h-4 text-muted-foreground" />
+                        <p className="text-sm font-semibold">Social Media Links</p>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        All icons appear on the website. Paste full URLs below and save — icons become clickable links.
+                        WhatsApp uses your phone number if left empty.
+                      </p>
+                      <Field label="WhatsApp URL (optional)">
+                        <Input
+                          value={settings.socialLinks.whatsapp}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              socialLinks: { ...settings.socialLinks, whatsapp: e.target.value },
+                            })
+                          }
+                          placeholder="https://wa.me/919876543210"
+                          className="h-11"
+                        />
+                      </Field>
+                      <Field label="Facebook">
+                        <Input
+                          value={settings.socialLinks.facebook}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              socialLinks: { ...settings.socialLinks, facebook: e.target.value },
+                            })
+                          }
+                          placeholder="https://facebook.com/yourpage"
+                          className="h-11"
+                        />
+                      </Field>
+                      <Field label="Instagram">
+                        <Input
+                          value={settings.socialLinks.instagram}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              socialLinks: { ...settings.socialLinks, instagram: e.target.value },
+                            })
+                          }
+                          placeholder="https://instagram.com/yourpage"
+                          className="h-11"
+                        />
+                      </Field>
+                      <Field label="Telegram">
+                        <Input
+                          value={settings.socialLinks.telegram}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              socialLinks: { ...settings.socialLinks, telegram: e.target.value },
+                            })
+                          }
+                          placeholder="https://t.me/yourchannel"
+                          className="h-11"
+                        />
+                      </Field>
+                      <Field label="YouTube">
+                        <Input
+                          value={settings.socialLinks.youtube}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              socialLinks: { ...settings.socialLinks, youtube: e.target.value },
+                            })
+                          }
+                          placeholder="https://youtube.com/@yourchannel"
+                          className="h-11"
+                        />
+                      </Field>
+                      <Field label="Twitter / X">
+                        <Input
+                          value={settings.socialLinks.twitter}
+                          onChange={(e) =>
+                            setSettings({
+                              ...settings,
+                              socialLinks: { ...settings.socialLinks, twitter: e.target.value },
+                            })
+                          }
+                          placeholder="https://twitter.com/yourpage"
+                          className="h-11"
+                        />
+                      </Field>
+                    </div>
+
                     <Button onClick={saveSettings} disabled={savingSettings} className="w-full sm:w-auto gap-2 h-11">
                       {savingSettings ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                       {savingSettings ? "Saving…" : "Save Settings"}

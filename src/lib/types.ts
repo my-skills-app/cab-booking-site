@@ -1,6 +1,16 @@
+export type SocialLinks = {
+  whatsapp: string;
+  facebook: string;
+  instagram: string;
+  telegram: string;
+  youtube: string;
+  twitter: string;
+};
+
 export type SiteSettings = {
   phoneNumber: string;
   contactEmail: string;
+  socialLinks: SocialLinks;
 };
 
 export type PricingFare = {

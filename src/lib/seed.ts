@@ -36,6 +36,14 @@ async function insertStaticData() {
     key: "site",
     phoneNumber: siteConfig.phoneNumber,
     contactEmail: siteConfig.contactEmail,
+    socialLinks: {
+      whatsapp: "",
+      facebook: "",
+      instagram: "",
+      telegram: "",
+      youtube: "",
+      twitter: "",
+    },
   });
 
   const features = landingPageData.streamlineBusiness.features;

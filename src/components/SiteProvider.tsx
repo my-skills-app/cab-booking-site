@@ -1,17 +1,14 @@
 "use client";
 
 import React, { createContext, useContext } from "react";
-import { siteConfig } from "@/lib/site-config";
 import type { SiteSettings } from "@/lib/types";
+import { normalizeSiteSettings } from "@/lib/site-settings";
 
 type SiteContextValue = {
   settings: SiteSettings;
 };
 
-const defaultSettings: SiteSettings = {
-  phoneNumber: siteConfig.phoneNumber,
-  contactEmail: siteConfig.contactEmail,
-};
+const defaultSettings: SiteSettings = normalizeSiteSettings(null);
 
 const SiteContext = createContext<SiteContextValue>({
   settings: defaultSettings,

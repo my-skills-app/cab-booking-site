@@ -19,10 +19,24 @@ export async function PUT(request: Request) {
 
   const body = await request.json();
   await connectDB();
+  const socialLinks = body.socialLinks ?? {};
   const settings = await Settings.findOneAndUpdate(
     { key: "site" },
-    { phoneNumber: body.phoneNumber, contactEmail: body.contactEmail },
-    { new: true, upsert: true }
+    {
+      $set: {
+        phoneNumber: body.phoneNumber,
+        contactEmail: body.contactEmail,
+        socialLinks: {
+          whatsapp: socialLinks.whatsapp ?? "",
+          facebook: socialLinks.facebook ?? "",
+          instagram: socialLinks.instagram ?? "",
+          telegram: socialLinks.telegram ?? "",
+          youtube: socialLinks.youtube ?? "",
+          twitter: socialLinks.twitter ?? "",
+        },
+      },
+    },
+    { new: true, upsert: true, setDefaultsOnInsert: true }
   );
   revalidatePublicSite();
   return NextResponse.json(serializeDoc(settings!.toObject()));

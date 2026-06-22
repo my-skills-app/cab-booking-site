@@ -12,22 +12,16 @@ import {
 } from "@/lib/models";
 import type { SiteContent, SiteSettings } from "@/lib/types";
 import { getStaticFallbackContent } from "@/lib/static-fallback";
-import { siteConfig } from "@/lib/site-config";
+import { normalizeSiteSettings } from "@/lib/site-settings";
 
-const defaultSettings: SiteSettings = {
-  phoneNumber: siteConfig.phoneNumber,
-  contactEmail: siteConfig.contactEmail,
-};
+const defaultSettings: SiteSettings = normalizeSiteSettings(null);
 
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   try {
     await connectDB();
     const settings = await Settings.findOne({ key: "site" });
     if (!settings) return defaultSettings;
-    return {
-      phoneNumber: settings.phoneNumber || defaultSettings.phoneNumber,
-      contactEmail: settings.contactEmail || defaultSettings.contactEmail,
-    };
+    return normalizeSiteSettings(settings.toObject());
   } catch {
     return defaultSettings;
   }
@@ -49,10 +43,7 @@ export const getSiteContent = cache(async (): Promise<SiteContent> => {
       ]);
 
     return {
-      settings: {
-        phoneNumber: settings?.phoneNumber || defaultSettings.phoneNumber,
-        contactEmail: settings?.contactEmail || defaultSettings.contactEmail,
-      },
+      settings: normalizeSiteSettings(settings?.toObject()),
       pricingFares: pricingFares.map((d) => serializeDoc(d.toObject())),
       popularFares: popularFares.map((d) => serializeDoc(d.toObject())),
       teamMembers: teamMembers.map((d) => serializeDoc(d.toObject())),

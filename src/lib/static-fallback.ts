@@ -2,13 +2,14 @@ import { landingPageData } from "@/lib/landing-page-data";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { siteConfig } from "@/lib/site-config";
 import type { SiteContent } from "@/lib/types";
+import { normalizeSiteSettings } from "@/lib/site-settings";
 
 export function getStaticFallbackContent(): SiteContent {
   return {
-    settings: {
+    settings: normalizeSiteSettings({
       phoneNumber: siteConfig.phoneNumber,
       contactEmail: siteConfig.contactEmail,
-    },
+    }),
     pricingFares: landingPageData.streamlineBusiness.features.map((f, i) => ({
       _id: `static-${i}`,
       title: f.title,

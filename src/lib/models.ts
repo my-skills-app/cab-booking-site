@@ -1,10 +1,23 @@
 import mongoose, { Schema, models, model } from "mongoose";
 
+const SocialLinksSchema = new Schema(
+  {
+    whatsapp: { type: String, default: "" },
+    facebook: { type: String, default: "" },
+    instagram: { type: String, default: "" },
+    telegram: { type: String, default: "" },
+    youtube: { type: String, default: "" },
+    twitter: { type: String, default: "" },
+  },
+  { _id: false }
+);
+
 const SettingsSchema = new Schema(
   {
     key: { type: String, unique: true, default: "site" },
     phoneNumber: { type: String, required: true },
     contactEmail: { type: String, required: true },
+    socialLinks: { type: SocialLinksSchema, default: () => ({}) },
   },
   { timestamps: true }
 );
